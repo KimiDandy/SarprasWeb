@@ -22,14 +22,14 @@
 </head>
 
 <body class="vh-200">
-    <div class="authincation h-200">
-        <div class="container h-200">
-            <div class="row justify-content-center h-200 align-items-center m-5">
+    <div class="authincation h-200 p-0">
+        <div class="container h-200 p-0">
+            <div class="row justify-content-center h-200 p-0 align-items-center m-5">
                 <div class="col-md-6">
                     <div class="authincation-content">
                         <div class="row no-gutters">
                             <div class="col-xl-12">
-                                <div class="auth-form pb-0 m-5">
+                                <div class="auth-form pb-0 m-1">
                                     <div class="text-center mb-3">
                                         <img src="images/logo.png" alt="" style="width: 100px; height: 100px">
                                     </div>
