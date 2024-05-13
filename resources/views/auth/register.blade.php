@@ -61,21 +61,63 @@
                                             </select>
                                         </div>
 
+                                        <div id="siswaFields" style="display: none;">
+                                            <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
+                                                <label for="nisn" class="form-label">NISN</label>
+                                                <input type="text" class="form-control" id="nisn" name="nisn"
+                                                    placeholder="Masukkan NISN">
+                                            </div>
+                                            <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
+                                                <label for="namaLengkap" class="form-label">Nama Lengkap</label>
+                                                <input type="text" class="form-control" id="namaLengkap"
+                                                    name="namaLengkap" placeholder="Masukkan Nama Lengkap">
+                                            </div>
+
+                                            <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
+                                                <label for="classUser" class="form-label">Kelas</label>
+                                                <select class="js-classUser custom-border" name="classUser">
+
+                                                    <option value="XI">XI</option>
+                                                    <option value="XII">XII</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
+                                                <label for="nomorHandphone" class="form-label">Nomor Handphone</label>
+                                                <input type="text" class="form-control" id="nomorHandphone"
+                                                    name="nomorHandphone" placeholder="Masukkan Nomor Handphone">
+                                            </div>
+                                        </div>
+
+                                        <div id="toolmanFields" style="display: none;">
+                                            <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
+                                                <label for="namaLengkapToolman" class="form-label">Nama
+                                                    Lengkap</label>
+                                                <input type="text" class="form-control" id="namaLengkapToolman"
+                                                    name="namaLengkapToolman" placeholder="Masukkan Nama Lengkap">
+                                            </div>
+                                            <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
+                                                <label for="nomorHandphoneToolman" class="form-label">Nomor
+                                                    Handphone</label>
+                                                <input type="text" class="form-control" id="nomorHandphoneToolman"
+                                                    name="nomorHandphoneToolman"
+                                                    placeholder="Masukkan Nomor Handphone">
+                                            </div>
+                                        </div>
 
                                         <div class="mb-3">
                                             <label for="inputUsername" class="form-label">Username</label>
                                             <div class="input-group" id="">
-                                                <input type="username" class="form-control border-end-0" name="username"
-                                                    id="inputUsername" placeholder="Username Anda">
-
+                                                <input type="username" class="form-control border-end-0"
+                                                    name="username" id="inputUsername" placeholder="Username Anda">
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="inputChoosePassword" class="form-label">Password</label>
                                             <div class="input-group" id="">
-                                                <input type="password" class="form-control border-end-0" name="password"
-                                                    id="inputChoosePassword" placeholder="Password Anda">
+                                                <input type="password" class="form-control border-end-0"
+                                                    name="password" id="inputChoosePassword"
+                                                    placeholder="Password Anda">
                                                 <a href="javascript:;" class="input-group-text bg-primary"
                                                     id="show-hide-password">
                                                     <i class="fa fa-eye" style="color: white"></i>
@@ -83,15 +125,13 @@
                                             </div>
                                         </div>
 
-
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-block">Masuk</button>
                                         </div>
                                     </form>
-                                    <div class="text-center mt-5 mb-2">Belum punya Akun ? <a href="{{ 'login' }}"
-                                            style="font-weight: bold">Masuk</a>
+                                    <div class="text-center mt-5 mb-2">Belum punya Akun ? <a
+                                            href="{{ 'login' }}" style="font-weight: bold">Masuk</a>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -141,6 +181,33 @@
                     $(this).next('.select2-container')
                         .find('li.select2-search--inline input.select2-search__field').attr('placeholder',
                             'Daftar Sebagai');
+                }
+
+                // Tampilkan atau sembunyikan kolom sesuai dengan pilihan
+                var selectedValue = $(this).val();
+                if (selectedValue === 'Siswa') {
+                    $('#siswaFields').show();
+                    $('#toolmanFields').hide();
+                } else if (selectedValue === 'ToolMan') {
+                    $('#siswaFields').hide();
+                    $('#toolmanFields').show();
+                } else {
+                    $('#siswaFields').hide();
+                    $('#toolmanFields').hide();
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+
+            $(".js-classUser").select2({
+                placeholder: "Kelas"
+            }).on('change', function(e) {
+                if ($(this).val() && $(this).val().length) {
+                    $(this).next('.select2-container')
+                        .find('li.select2-search--inline input.select2-search__field').attr('placeholder',
+                            'Kelas');
                 }
             });
         });
