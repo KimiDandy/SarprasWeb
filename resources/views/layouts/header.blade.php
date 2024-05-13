@@ -7,7 +7,7 @@
 <meta name="robots" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no">
-<link rel="icon" href="{{ asset('/') }}images/sppd-logo.png" type="image/png" style="size: 200%" />
+<link rel="icon" href="{{ asset('/') }}images/logo.png" type="image/png" style="size: 200%" />
 
 <!-- PAGE TITLE HERE -->
 

@@ -29,7 +29,7 @@
                     <div class="authincation-content">
                         <div class="row no-gutters">
                             <div class="col-xl-12">
-                                <div class="auth-form m-5">
+                                <div class="auth-form pb-0 m-5">
                                     <div class="text-center mb-3">
                                         <img src="images/logo.png" alt="" style="width: 100px; height: 100px">
                                     </div>
