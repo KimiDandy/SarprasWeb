@@ -13,6 +13,12 @@
 
 <link href=" {{ asset('/') }}vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 <!-- FAVICONS ICON -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/i18n/zh-TW.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
 <link rel="shortcut icon" type="image/png" href="{{ asset('/') }}images/favicon.png">
 <link href="{{ asset('/') }}vendor/jquery-nice-seleact/css/nice-select.css" rel="stylesheet">
 <link href="{{ asset('/') }}vendor/owl-carousel/owl.carousel.css" rel="stylesheet">

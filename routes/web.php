@@ -39,3 +39,21 @@ Route::get('/toolman/inventory', function () {
 Route::get('/toolman/input-data', function () {
     return view('tool-man.tool.input-tool');
 })->name('input-tool-man');
+
+
+//USER
+Route::get('/user/input-data', function () {
+    return view('user.borrow.borrow-user');
+})->name('borrow-user');
+
+Route::get('/user/show-data', function () {
+    return view('user.show-inventory.show-data-user');
+})->name('show-user');
+
+Route::get('/user/history', function () {
+    return view('user.history-borrow.history-user');
+})->name('history-user');
+
+Route::get('/user/dashboard', function () {
+    return view('user.dashboard');
+})->name('dashboard-user');
