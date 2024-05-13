@@ -8,6 +8,7 @@ use App\Models\SeriBarangInventaris;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\View;
 
 class ToolmanController extends Controller
 {
@@ -16,8 +17,22 @@ class ToolmanController extends Controller
     }
 
     public function showInventory() {
-        return view('tool-man.inventory.inventory-data');
+        $dataBarang = BarangInventaris::all();
+    
+        foreach ($dataBarang as $barang) {
+            $barang->stok = SeriBarangInventaris::where('id_barang', $barang->id)->count();
+            $barang->seriDanMerk = SeriBarangInventaris::where('id_barang', $barang->id)->get(['nomor_seri', 'merk']);
+        }
+        
+        Log::info($dataBarang);
+        return view('tool-man.inventory.inventory-data', compact('dataBarang'));
     }
+    
+    public function getSeriBarang($id)
+{
+    $seriBarang = SeriBarangInventaris::where('id_barang', $id)->get();
+    return response()->json(['seriDanMerk' => $seriBarang]);
+}
 
     public function showInputData() {
         return view('tool-man.tool.input-tool');

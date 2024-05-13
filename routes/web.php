@@ -39,6 +39,8 @@ Route::post('/register', [RegistrationController::class, 'register'])->name('reg
 Route::get('/toolman/dashboard', [ToolmanController::class, 'show'])->name('dashboard-tool-man');
 
 Route::get('/toolman/inventory', [ToolmanController::class, 'showInventory'])->name('inventory-tool-man');
+Route::get('/get-seri-barang/{id}', [ToolmanController::class, 'getSeriBarang'])->name('get-seri-barang');
+
 
 Route::get('/toolman/input-data', [ToolmanController::class, 'showInputData'])->name('input-tool-man');
 Route::post('/toolman/input-data', [ToolmanController::class, 'inputData'])->name('input-data-tool-man');
