@@ -22,23 +22,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($dataBarang as $index => $barang)
-                                        <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>
-                                                <img src="{{ $barang->gambar_barang }}" width="56" alt="Gambar Barang">
-                                            </td>
-                                            <td>{{ $barang->nama_barang }}</td>
-                                            <td>{{ $barang->stok }}</td>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <button class="btn-info btn btn-info shadow btn-xs sharp pt-2 info-detail-btn" data-bs-target="#info-detail" data-bs-toggle="modal" data-id="{{ $barang->id }}" data-name="{{ $barang->nama_barang }}">
-                                                        <i class="fa fa-info"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
+
+                                    {{-- @foreach ($data as $item) --}}
+                                    <tr>
+                                        {{-- <td>{{ $loop->iteration }}</td> --}}
+                                        <td>1</td>
+                                        <td><img src="{{ asset('/') }}images/logo.png" width="56" alt="">
+                                        </td>
+                                        <td>Logo</td>
+                                        <td>2</td>
+                                        <td>
+                                            <div class="d-flex ">
+                                                <button class="btn-info btn btn-info shadow btn-xs sharp pt-2 me-2"
+                                                    data-bs-toggle="modal" data-bs-target="#info-detail" data-id=""
+                                                    data-name="">
+                                                    <i class="fa fa-info"></i>
+                                                </button>
+                                                <a href="{{ route('edit-inventory') }}"
+                                                    class="btn btn-primary shadow btn-xs sharp me-1 pt-2"><i
+                                                        class="fas fa-pencil-alt"></i></a>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>

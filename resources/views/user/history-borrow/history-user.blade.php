@@ -109,9 +109,7 @@
                                     <thead>
                                         <tr>
                                             <th style="font-weight: bold">No</th>
-                                            <th style="font-weight: bold">Gambar</th>
                                             <th style="font-weight: bold">Barang</th>
-                                            <th style="font-weight: bold">Jumlah</th>
                                             <th style="font-weight: bold">Tanggal Pinjam</th>
                                             <th style="font-weight: bold">Tanggal Kembali</th>
                                             <th style="font-weight: bold">Status</th>
@@ -121,10 +119,15 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td><img src="{{ asset('/') }}images/logo.png" width="56" alt="">
+                                            <td>
+                                                <div class="d-flex ">
+                                                    <button class="btn-info btn btn-info shadow btn-xs sharp pt-2"
+                                                        data-bs-toggle="modal" data-bs-target="#info-detail" data-id=""
+                                                        data-name="">
+                                                        <i class="fa fa-info"></i>
+                                                    </button>
+                                                </div>
                                             </td>
-                                            <td>Logo</td>
-                                            <td>13</td>
                                             <td>2024-05-13</td>
                                             <td>2024-05-20</td>
                                             <td>
@@ -165,9 +168,7 @@
                                     <thead>
                                         <tr>
                                             <th style="font-weight: bold">No</th>
-                                            <th style="font-weight: bold">Gambar</th>
                                             <th style="font-weight: bold">Barang</th>
-                                            <th style="font-weight: bold">Jumlah</th>
                                             {{-- <th style="font-weight: bold">Tanggal Pinjam</th> --}}
                                             <th style="font-weight: bold">Batas Kembali</th>
                                             <th style="font-weight: bold">Status</th>
@@ -177,10 +178,15 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td><img src="{{ asset('/') }}images/logo.png" width="56" alt="">
+                                            <td>
+                                                <div class="d-flex ">
+                                                    <button class="btn-info btn btn-info shadow btn-xs sharp pt-2"
+                                                        data-bs-toggle="modal" data-bs-target="#info-detail-ongoing"
+                                                        data-id="" data-name="">
+                                                        <i class="fa fa-info"></i>
+                                                    </button>
+                                                </div>
                                             </td>
-                                            <td>Logo</td>
-                                            <td>13</td>
                                             <td>2024-05-13</td>
                                             {{-- <td>2024-05-20</td> --}}
                                             <td>
@@ -222,7 +228,15 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Sapu</td>
+                                            <td>
+                                                <div class="d-flex ">
+                                                    <button class="btn-info btn btn-info shadow btn-xs sharp pt-2"
+                                                        data-bs-toggle="modal" data-bs-target="#info-detail-finish"
+                                                        data-id="" data-name="">
+                                                        <i class="fa fa-info"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
                                             <td>2024-05-13</td>
                                             <td>2024-05-20</td>
                                         </tr>
@@ -236,48 +250,101 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="info-detail-user">
+        <div class="modal fade" id="info-detail-ongoing">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" style="font-weight: bold; font-size: 20px">Detail Peminjam</h5>
+                        <h5 class="modal-title" style="font-weight: bold; font-size: 20px">Detail Barang</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal">
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="input-group mb-3">
-
+                            <input type="text" class="form-control" placeholder="Cari..." aria-label="Cari..."
+                                aria-describedby="button-addon2"id="searchInput">
+                            <button class="btn btn-outline-primary" type="button" id="button-addon2">Cari</button>
                         </div>
                         <table class="table table-bordered" style="border-color: #ddd;">
+                            <thead style="text-align: center;">
+                                <tr>
+                                    <th scope="col" style="font-weight: bold">Gambar</th>
+                                    <th scope="col" style="font-weight: bold">Nama</th>
 
+                                    <th scope="col" style="font-weight: bold">Jumlah</th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 <tr>
-                                    <td>Nama:</td>
-                                    <td>KarDoe</td>
+                                    <td><img src="{{ asset('/') }}images/logo.png" width="56" alt="">
+                                    </td>
+                                    <td>Obeng</td>
+
+                                    <td>3</td>
                                 </tr>
-                                <tr>
-                                    <td>NISN:</td>
-                                    <td>1234567890</td>
-                                </tr>
-                                <tr>
-                                    <td>Kelas:</td>
-                                    <td>12A</td>
-                                </tr>
-                                <tr>
-                                    <td>No Telepon:</td>
-                                    <td>081234567890</td>
-                                </tr>
-                                <tr>
-                                    <td>Pinjam:</td>
-                                    <td>2024-05-13</td>
-                                </tr>
-                                <tr>
-                                    <td>Kembali:</td>
-                                    <td>2024-05-20</td>
-                                </tr>
+                                {{-- <tr id="noValue" style="display: none;">
+                                <td colspan="2" style="text-align: center;">Tidak Ada Data</td>
+                            </tr> --}}
                             </tbody>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#button-addon2').click(function() {
+                                        var searchText = $('#searchInput').val().toLowerCase();
+                                        var $tableRows = $('table tbody tr');
+                                        // var $noValueRow = $('#noValue');
 
+                                        $tableRows.hide();
+                                        $tableRows.filter(function() {
+                                            return $(this).text().toLowerCase().indexOf(searchText) > -1;
+                                        }).show();
 
+                                        // $noValueRow.toggle($tableRows.filter(':visible').length === 0);
+                                    });
+                                });
+                            </script>
+                        </table>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary light" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="info-detail-finish">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="font-weight: bold; font-size: 20px">Detail Barang</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Cari..." aria-label="Cari..."
+                                aria-describedby="button-addon2"id="searchInput">
+                            <button class="btn btn-outline-primary" type="button" id="button-addon2">Cari</button>
+                        </div>
+                        <table class="table table-bordered" style="border-color: #ddd;">
+                            <thead style="text-align: center;">
+                                <tr>
+                                    <th scope="col" style="font-weight: bold">Gambar</th>
+                                    <th scope="col" style="font-weight: bold">Nama</th>
+
+                                    <th scope="col" style="font-weight: bold">Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img src="{{ asset('/') }}images/logo.png" width="56" alt="">
+                                    </td>
+                                    <td>Obeng</td>
+
+                                    <td>3</td>
+                                </tr>
+                                {{-- <tr id="noValue" style="display: none;">
+                                <td colspan="2" style="text-align: center;">Tidak Ada Data</td>
+                            </tr> --}}
+                            </tbody>
                             <script>
                                 $(document).ready(function() {
                                     $('#button-addon2').click(function() {
@@ -322,8 +389,7 @@
                                 <tr>
                                     <th scope="col" style="font-weight: bold">Gambar</th>
                                     <th scope="col" style="font-weight: bold">Nama</th>
-                                    <th scope="col" style="font-weight: bold">Seri</th>
-                                    <th scope="col" style="font-weight: bold">Merk</th>
+
                                     <th scope="col" style="font-weight: bold">Jumlah</th>
                                 </tr>
                             </thead>
@@ -332,8 +398,7 @@
                                     <td><img src="{{ asset('/') }}images/logo.png" width="56" alt="">
                                     </td>
                                     <td>Obeng</td>
-                                    <td>123</td>
-                                    <td>Merk A</td>
+
                                     <td>3</td>
                                 </tr>
                                 {{-- <tr id="noValue" style="display: none;">
