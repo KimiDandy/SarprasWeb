@@ -275,7 +275,7 @@
                                 input1.type = 'text';
                                 input1.className = 'form-control input-default custom-border';
                                 input1.placeholder = 'Masukkan Nomor Seri';
-                                input1.name = 'nomor_seri_' + (i + 1);
+                                input1.name = 'nomor_seri[]';
                                 col1.appendChild(label1);
                                 col1.appendChild(input1);
 
@@ -288,7 +288,7 @@
                                 input2.type = 'text';
                                 input2.className = 'form-control input-default custom-border';
                                 input2.placeholder = 'Masukkan Merk';
-                                input2.name = 'merk_' + (i + 1);
+                                input2.name = 'merk[]';
                                 col2.appendChild(label2);
                                 col2.appendChild(input2);
 
