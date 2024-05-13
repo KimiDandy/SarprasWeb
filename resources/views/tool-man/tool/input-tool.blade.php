@@ -199,19 +199,21 @@
                     <hr class="m-0" style="opacity: 30%; height: 0.7px;">
                     <div class="card-body">
                         <div class="basic-form">
-                            <form action="" method="post" class="form-valide-with-icon needs-validation" novalidate>
+                            <form action="{{ route('input-data-tool-man') }}" method="post" class="form-valide-with-icon needs-validation"
+                                novalidate="" enctype="multipart/form-data">
+                                @csrf
                                 <div class="row mb-3">
                                     <div class="col-lg-8">
                                         <label class="text-label form-label ps-2">Nama Barang</label>
                                         <input type="text" class="form-control input-default custom-border"
-                                            placeholder="Masukkan Nama Barang" name="name">
+                                            placeholder="Masukkan Nama Barang" name="nama_barang">
                                     </div>
                                     <div class="col-lg-2">
                                         <label class="text-label form-label ps-2">Jumlah</label>
                                         <div class="input-group">
                                             <button class="btn btn-outline-primary" type="button" id="tambah">+</button>
-                                            <input type="text" id="jumlahBarang" name="jumlahBarang" value="0"
-                                                min="1" class="form-control p-0 text-center">
+                                            <input type="text" id="jumlahBarang" name="jumlah_barang" value="0"
+                                                min="1" class="form-control p-0 text-center ">
                                             <button class="btn btn-outline-primary" type="button" id="kurang">-</button>
                                         </div>
                                     </div>
@@ -277,7 +279,7 @@
                                 input1.type = 'text';
                                 input1.className = 'form-control input-default custom-border';
                                 input1.placeholder = 'Masukkan Nomor Seri';
-                                input1.name = 'nomor_seri_' + (i + 1);
+                                input1.name = 'nomor_seri[]';
                                 col1.appendChild(label1);
                                 col1.appendChild(input1);
 
@@ -290,7 +292,7 @@
                                 input2.type = 'text';
                                 input2.className = 'form-control input-default custom-border';
                                 input2.placeholder = 'Masukkan Merk';
-                                input2.name = 'merk_' + (i + 1);
+                                input2.name = 'merk[]';
                                 col2.appendChild(label2);
                                 col2.appendChild(input2);
 
@@ -300,6 +302,7 @@
                             }
                         });
                     </script>
+                    
                 </div>
             </div>
         </div>
