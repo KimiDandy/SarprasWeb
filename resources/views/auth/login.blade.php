@@ -41,7 +41,7 @@
                                         <div class="mb-3">
                                             <label for="inputUsername" class="form-label">Username</label>
                                             <input type="text" class="form-control" id="inputUsername"
-                                                placeholder="Usernmae Anda" name="username">
+                                                placeholder="Username Anda" name="username">
                                         </div>
                                         <div class="mb-3">
                                             <label for="inputChoosePassword" class="form-label">Password</label>
@@ -60,7 +60,7 @@
                                             <button type="submit" class="btn btn-primary btn-block">Masuk</button>
                                         </div>
                                     </form>
-                                    <div class="text-center mt-5 mb-2">Belum punya Akun ? <a href="{{ 'register' }}"
+                                    <div class="text-center mt-5 mb-2">Belum punya Akun ? <a href="{{ '/register' }}"
                                             style="font-weight: bold">Daftar</a>
                                     </div>
 

@@ -41,11 +41,11 @@
                                     <div class="text-center mb-3">
                                         <h4 style="font-weight: bold ">SMKN 8 Jember</h4>
                                     </div>
-                                    <form action="{{ route('login') }}" method="post">
+                                    <form action="{{ route('register') }}" method="post">
                                         @csrf
                                         <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
-                                            <label for="registAs" class="form-label">Daftar Sebagai</label>
-                                            <select class="js-regist-as custom-border" name="registAs">
+                                            <label for="role" class="form-label">Daftar Sebagai</label>
+                                            <select class="js-regist-as custom-border" name="role">
 
                                                 <option value="ToolMan">ToolMan</option>
                                                 <option value="Siswa">Siswa</option>
@@ -53,8 +53,8 @@
                                         </div>
 
                                         <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
-                                            <label for="major" class="form-label">Jurusan</label>
-                                            <select class="js-major custom-border" name="major">
+                                            <label for="jurusan" class="form-label">Jurusan</label>
+                                            <select class="js-major custom-border" name="jurusan">
 
                                                 <option value="Otomotif">Otomotif</option>
                                                 <option value="Perikanan">Perikanan</option>
@@ -68,38 +68,38 @@
                                                     placeholder="Masukkan NISN">
                                             </div>
                                             <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
-                                                <label for="namaLengkap" class="form-label">Nama Lengkap</label>
-                                                <input type="text" class="form-control" id="namaLengkap"
-                                                    name="namaLengkap" placeholder="Masukkan Nama Lengkap">
+                                                <label for="nama_lengkap_siswa" class="form-label">Nama Lengkap</label>
+                                                <input type="text" class="form-control" id="nama_lengkap_siswa"
+                                                    name="nama_lengkap_siswa" placeholder="Masukkan Nama Lengkap">
                                             </div>
 
                                             <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
-                                                <label for="classUser" class="form-label">Kelas</label>
-                                                <select class="js-classUser custom-border" name="classUser">
-
+                                                <label for="kelas" class="form-label">Kelas</label>
+                                                <select class="js-classUser custom-border" name="kelas">
+                                                    <option value="XI">X</option>
                                                     <option value="XI">XI</option>
                                                     <option value="XII">XII</option>
                                                 </select>
                                             </div>
                                             <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
-                                                <label for="nomorHandphone" class="form-label">Nomor Handphone</label>
-                                                <input type="text" class="form-control" id="nomorHandphone"
-                                                    name="nomorHandphone" placeholder="Masukkan Nomor Handphone">
+                                                <label for="nomor_handphone_siswa" class="form-label">Nomor Handphone</label>
+                                                <input type="text" class="form-control" id="nomor_handphone_siswa"
+                                                    name="nomor_handphone_siswa" placeholder="Masukkan Nomor Handphone">
                                             </div>
                                         </div>
 
                                         <div id="toolmanFields" style="display: none;">
                                             <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
-                                                <label for="namaLengkapToolman" class="form-label">Nama
+                                                <label for="nama_lengkap_toolman" class="form-label">Nama
                                                     Lengkap</label>
-                                                <input type="text" class="form-control" id="namaLengkapToolman"
-                                                    name="namaLengkapToolman" placeholder="Masukkan Nama Lengkap">
+                                                <input type="text" class="form-control" id="nama_lengkap_toolman"
+                                                    name="nama_lengkap_toolman" placeholder="Masukkan Nama Lengkap">
                                             </div>
                                             <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
-                                                <label for="nomorHandphoneToolman" class="form-label">Nomor
+                                                <label for="nomor_handphone_toolman" class="form-label">Nomor
                                                     Handphone</label>
-                                                <input type="text" class="form-control" id="nomorHandphoneToolman"
-                                                    name="nomorHandphoneToolman"
+                                                <input type="text" class="form-control" id="nomor_handphone_toolman"
+                                                    name="nomor_handphone_toolman"
                                                     placeholder="Masukkan Nomor Handphone">
                                             </div>
                                         </div>
@@ -129,8 +129,8 @@
                                             <button type="submit" class="btn btn-primary btn-block">Masuk</button>
                                         </div>
                                     </form>
-                                    <div class="text-center mt-5 mb-2">Belum punya Akun ? <a
-                                            href="{{ 'login' }}" style="font-weight: bold">Masuk</a>
+                                    <div class="text-center mt-5 mb-2">Sudah punya Akun ? <a
+                                            href="{{ '/login' }}" style="font-weight: bold">Masuk</a>
                                     </div>
                                 </div>
                             </div>

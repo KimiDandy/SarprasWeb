@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +18,20 @@ use Illuminate\Support\Facades\Route;
 
 // AUTH
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
+// Route::get('/login', function () {
+//     return view('auth.login');
+// })->name('login');
+// Route::get('/register', function () {
+//     return view('auth.register');
+// })->name('register');
+
+Route::redirect('/', '/login');
+
+Route::get('/login', [LoginController::class, 'indexLogin'])->name('pages.login');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+Route::get('/register', [RegistrationController::class, 'index'])->name('pages.register');
+Route::post('/register', [RegistrationController::class, 'register'])->name('register');
 
 // TOOLMAN
 Route::get('/toolman/dashboard', function () {
