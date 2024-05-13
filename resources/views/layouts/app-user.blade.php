@@ -1,4 +1,4 @@
-@include('layouts.body')
+@include('layouts.body-user')
 @yield('section')
-@include('sweetalert::alert')
+{{-- @include('sweetalert::alert') --}}
 @include('layouts.footer')
