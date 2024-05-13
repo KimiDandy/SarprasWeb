@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ToolmanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,29 +19,33 @@ use Illuminate\Support\Facades\Route;
 
 // AUTH
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
+// Route::get('/login', function () {
+//     return view('auth.login');
+// })->name('login');
+// Route::get('/register', function () {
+//     return view('auth.register');
+// })->name('register');
+
+Route::redirect('/', '/toolman/dashboard');
+
+Route::get('/login', [LoginController::class, 'show'])->name('pages.login');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+Route::get('/register', [RegistrationController::class, 'show'])->name('pages.register');
+Route::post('/register', [RegistrationController::class, 'register'])->name('register');
 
 // TOOLMAN
-Route::get('/toolman/dashboard', function () {
-    return view('tool-man.dashboard');
-})->name('dashboard-tool-man');
 
-Route::get('/toolman/history', function () {
-    return view('tool-man.history.history-data');
-})->name('history-tool-man');
+Route::get('/toolman/dashboard', [ToolmanController::class, 'show'])->name('dashboard-tool-man');
 
-Route::get('/toolman/inventory', function () {
-    return view('tool-man.inventory.inventory-data');
-})->name('inventory-tool-man');
+Route::get('/toolman/inventory', [ToolmanController::class, 'showInventory'])->name('inventory-tool-man');
+Route::get('/get-seri-barang/{id}', [ToolmanController::class, 'getSeriBarang'])->name('get-seri-barang');
 
-Route::get('/toolman/input-data', function () {
-    return view('tool-man.tool.input-tool');
-})->name('input-tool-man');
+
+Route::get('/toolman/input-data', [ToolmanController::class, 'showInputData'])->name('input-tool-man');
+Route::post('/toolman/input-data', [ToolmanController::class, 'inputData'])->name('input-data-tool-man');
+
+Route::get('/toolman/history', [ToolmanController::class, 'showHistory'])->name('history-tool-man');
 
 
 //USER
