@@ -24,6 +24,9 @@
 <link href="{{ asset('/') }}vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
 <link rel=" {{ asset('/') }}stylesheet" href="{{ asset('/') }}vendor/nouislider/nouislider.min.css">
 <link href="{{ asset('/') }}vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Custom Stylesheet -->
 
 <link href="{{ asset('/') }}vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">

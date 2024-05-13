@@ -10,14 +10,12 @@
             margin-bottom: 30px;
             border-radius: 15px;
             border: 2px solid #8e44ad;
-            /* tambahkan properti border di sini */
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
-
 
         .img-area-info {
             position: relative;
@@ -122,7 +120,6 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
             z-index: -1;
-            /* Set initial z-index for pseudo-element */
         }
 
         .img-area-info::before {
@@ -199,21 +196,21 @@
                     <hr class="m-0" style="opacity: 30%; height: 0.7px;">
                     <div class="card-body">
                         <div class="basic-form">
-                            <form action="{{ route('input-data-tool-man') }}" method="post" class="form-valide-with-icon needs-validation"
-                                novalidate="" enctype="multipart/form-data">
-                                @csrf
+                            <form id="tambahBarangForm" method="post" class="form-valide-with-icon needs-validation"
+                                novalidate>
+                                {{-- @csrf --}}
                                 <div class="row mb-3">
                                     <div class="col-lg-8">
                                         <label class="text-label form-label ps-2">Nama Barang</label>
                                         <input type="text" class="form-control input-default custom-border"
-                                            placeholder="Masukkan Nama Barang" name="nama_barang">
+                                            placeholder="Masukkan Nama Barang" name="name" required>
                                     </div>
                                     <div class="col-lg-2">
                                         <label class="text-label form-label ps-2">Jumlah</label>
                                         <div class="input-group">
                                             <button class="btn btn-outline-primary" type="button" id="tambah">+</button>
-                                            <input type="text" id="jumlahBarang" name="jumlah_barang" value="0"
-                                                min="1" class="form-control p-0 text-center ">
+                                            <input type="text" id="jumlahBarang" name="jumlahBarang" value="0"
+                                                min="1" class="form-control p-0 text-center" required>
                                             <button class="btn btn-outline-primary" type="button" id="kurang">-</button>
                                         </div>
                                     </div>
@@ -225,11 +222,10 @@
                                 <div class="row mb-3" id="detailData"></div>
 
                                 <div class="col-sm-12 p-0 text-center align-item-center justify-content-center">
-
                                     <div class="card-body">
                                         <div class="container align-item-center justify-content-center">
                                             <input type="file" id="gambarBarang" accept="image/*" name="gambar_barang"
-                                                style="display: none">
+                                                style="display: none" required>
                                             <div class="img-area" data-img="">
                                                 <i class='fas fa-cloud-upload-alt '
                                                     style="font-size:50px; color:#8e44ad"></i>
@@ -244,7 +240,7 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-success">Simpan</button>
+                                <button type="button" class="btn btn-success" id="submitBtn">Simpan</button>
                             </form>
                         </div>
                     </div>
@@ -301,58 +297,87 @@
                                 detailDataContainer.appendChild(row);
                             }
                         });
+
+                        const selectImage = document.querySelector('.select-image');
+                        const inputGambarBarang = document.querySelector('#gambarBarang');
+                        const imgArea = document.querySelector('.img-area');
+
+                        selectImage.addEventListener('click', function() {
+                            inputGambarBarang.click();
+                        });
+
+                        inputGambarBarang.addEventListener('change', function() {
+                            handleImageChange(inputGambarBarang, imgArea);
+                        });
+
+                        function handleImageChange(inputFile, imgArea) {
+                            const image = inputFile.files[0];
+                            if (image.size < 2000000) {
+                                const reader = new FileReader();
+                                reader.onload = () => {
+                                    const allImg = imgArea.querySelectorAll('img');
+                                    allImg.forEach(item => item.remove());
+                                    const imgUrl = reader.result;
+                                    const img = document.createElement('img');
+                                    img.src = imgUrl;
+                                    imgArea.appendChild(img);
+                                    imgArea.classList.add('active');
+                                    imgArea.dataset.img = image.name;
+
+                                    const zIndexValue = allImg.length + 1;
+                                    img.style.zIndex = zIndexValue;
+                                    imgArea.style.zIndex = zIndexValue;
+                                };
+                                reader.readAsDataURL(image);
+                            } else {
+                                Swal.fire('Error', 'Ukuran gambar lebih dari 2MB', 'error');
+                            }
+                        }
+
+                        function validateForm() {
+                            const name = document.querySelector('[name="name"]').value.trim();
+                            const jumlahBarang = parseInt(document.querySelector('#jumlahBarang').value);
+                            const inputFile = document.querySelector('#gambarBarang').files.length;
+
+                            if (!name) {
+                                Swal.fire('Error', 'Nama Barang harus diisi', 'error');
+                                return false;
+                            }
+
+                            if (jumlahBarang < 1) {
+                                Swal.fire('Error', 'Jumlah Barang minimal 1', 'error');
+                                return false;
+                            }
+
+                            if (inputFile === 0) {
+                                Swal.fire('Error', 'Harap Pilih Gambar Terlebih dahulu', 'error');
+                                return false;
+                            }
+
+                            return true;
+                        }
+
+                        document.getElementById('submitBtn').addEventListener('click', function(event) {
+                            event.preventDefault();
+                            if (validateForm()) {
+                                Swal.fire({
+                                    title: 'Apakah Anda yakin?',
+                                    text: "Anda tidak dapat mengembalikan ini!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Ya, simpan!'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        document.getElementById('tambahBarangForm').submit();
+                                    }
+                                });
+                            }
+                        });
                     </script>
-                    
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        const selectImage = document.querySelector('.select-image');
-        const inputGambarBarang = document.querySelector('#gambarBarang');
-        const imgArea = document.querySelector('.img-area');
-
-        selectImage.addEventListener('click', function() {
-            inputGambarBarang.click();
-        });
-
-        inputGambarBarang.addEventListener('change', function() {
-            handleImageChange(inputGambarBarang, imgArea);
-        });
-
-        function handleImageChange(inputFile, imgArea) {
-            const image = inputFile.files[0];
-            if (image.size < 2000000) {
-                const reader = new FileReader();
-                reader.onload = () => {
-                    const allImg = imgArea.querySelectorAll('img');
-                    allImg.forEach(item => item.remove());
-                    const imgUrl = reader.result;
-                    const img = document.createElement('img');
-                    img.src = imgUrl;
-                    imgArea.appendChild(img);
-                    imgArea.classList.add('active');
-                    imgArea.dataset.img = image.name;
-
-                    // Set z-index dynamically
-                    const zIndexValue = allImg.length + 1;
-                    img.style.zIndex = zIndexValue;
-                    imgArea.style.zIndex = zIndexValue;
-                };
-                reader.readAsDataURL(image);
-            } else {
-                alert('Image size more than 2MB');
-            }
-        }
-
-        function validateImage() {
-            const inputFile = document.querySelector('#file');
-            const imgArea = document.querySelector('.img-area');
-            if (inputFile.files.length <= 0) {
-                alert('Harap Pilih Gambar Terlebih dahulu');
-                return false;
-            }
-            return true;
-        }
-    </script>
 @endsection
