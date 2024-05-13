@@ -21,7 +21,7 @@ class ToolmanController extends Controller
     
         foreach ($dataBarang as $barang) {
             $barang->stok = SeriBarangInventaris::where('id_barang', $barang->id)->count();
-            $barang->seriDanMerk = SeriBarangInventaris::where('id_barang', $barang->id)->get(['nomor_seri', 'merk']);
+            $barang->seriMerkStatus = SeriBarangInventaris::where('id_barang', $barang->id)->get(['nomor_seri', 'merk', 'status']);
         }
         
         Log::info($dataBarang);
@@ -31,7 +31,7 @@ class ToolmanController extends Controller
     public function getSeriBarang($id)
 {
     $seriBarang = SeriBarangInventaris::where('id_barang', $id)->get();
-    return response()->json(['seriDanMerk' => $seriBarang]);
+    return response()->json(['seriMerkStatus' => $seriBarang]);
 }
 
     public function showInputData() {
@@ -62,6 +62,7 @@ class ToolmanController extends Controller
             $seriBarang = new SeriBarangInventaris();
             $seriBarang->nomor_seri = $nomor;
             $seriBarang->merk = $merk[$key];
+            $seriBarang->status = 'Tersedia';
             $seriBarang->id_barang = $idBarang;
             $seriBarang->save();
         }

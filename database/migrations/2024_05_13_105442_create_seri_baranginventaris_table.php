@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nomor_seri');
             $table->string('merk');
+            $table->string('status');
             $table->string('id_barang');
             $table->timestamps();
         });

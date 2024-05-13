@@ -13,6 +13,7 @@ class SeriBarangInventaris extends Model
     protected $fillable = [
         'nomor_seri',
         'merk',
+        'status',
         'id_barang',
     ];
 }

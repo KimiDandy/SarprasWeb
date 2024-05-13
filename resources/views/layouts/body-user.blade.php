@@ -59,7 +59,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <form action="" method="post">
+                                    <form action="{{ route('pages.login') }}" method="get">
                                         @csrf
                                         <button type="submit" class="dropdown-item ai-icon">
                                             <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
