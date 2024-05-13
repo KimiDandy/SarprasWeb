@@ -92,7 +92,7 @@
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Cari..." aria-label="Cari..."
                             aria-describedby="button-addon2"id="searchInput">
-                        <button class="btn btn-outline-success" type="button" id="button-addon2">Cari</button>
+                        <button class="btn btn-outline-primary" type="button" id="button-addon2">Cari</button>
                     </div>
                     <table class="table table-bordered" style="border-color: #ddd;"">
                         <thead style="text-align: center;">

@@ -100,7 +100,7 @@
                     <li>
                         <a href="{{ route('input-tool-man') }}" class="" aria-expanded="false">
                             <i class="fas fa-plus"></i>
-                            <span class="nav-text">Input Barang</span>
+                            <span class="nav-text">Tambah Barang</span>
                         </a>
                     </li>
                     <li>
