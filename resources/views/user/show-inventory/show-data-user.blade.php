@@ -45,7 +45,7 @@
                                         <th>Gambar</th>
                                         <th>Nama</th>
                                         <th>Stok</th>
-                                        <th>Aksi</th>
+                                        {{-- <th>Aksi</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,7 +58,7 @@
                                         </td>
                                         <td>Logo</td>
                                         <td>2</td>
-                                        <td>
+                                        {{-- <td>
                                             <div class="d-flex ">
                                                 <button class="btn-info btn btn-info shadow btn-xs sharp pt-2"
                                                     data-bs-toggle="modal" data-bs-target="#info-detail" data-id=""
@@ -66,7 +66,7 @@
                                                     <i class="fa fa-info"></i>
                                                 </button>
                                             </div>
-                                        </td>
+                                        </td> --}}
 
                                     </tr>
 
