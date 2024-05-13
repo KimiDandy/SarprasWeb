@@ -8,7 +8,7 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
-    public function indexLogin(){
+    public function show(){
         return view('auth.login');
     }
 

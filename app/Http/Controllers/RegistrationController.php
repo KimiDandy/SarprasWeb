@@ -10,7 +10,7 @@ use App\Models\Toolman;
 
 class RegistrationController extends Controller
 {
-    public function index(){
+    public function show(){
         return view('auth.register');
     }
 
