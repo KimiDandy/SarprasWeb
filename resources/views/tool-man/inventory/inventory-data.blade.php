@@ -60,11 +60,14 @@
                                         <td>2</td>
                                         <td>
                                             <div class="d-flex ">
-                                                <button class="btn-info btn btn-info shadow btn-xs sharp pt-2"
+                                                <button class="btn-info btn btn-info shadow btn-xs sharp pt-2 me-2"
                                                     data-bs-toggle="modal" data-bs-target="#info-detail" data-id=""
                                                     data-name="">
                                                     <i class="fa fa-info"></i>
                                                 </button>
+                                                <a href="{{ route('edit-inventory') }}"
+                                                    class="btn btn-primary shadow btn-xs sharp me-1 pt-2"><i
+                                                        class="fas fa-pencil-alt"></i></a>
                                             </div>
                                         </td>
 

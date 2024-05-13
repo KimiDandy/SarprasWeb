@@ -40,6 +40,10 @@ Route::get('/toolman/input-data', function () {
     return view('tool-man.tool.input-tool');
 })->name('input-tool-man');
 
+Route::get('/toolman/edit-data', function () {
+    return view('tool-man.inventory.edit-inventory');
+})->name('edit-inventory');
+
 
 //USER
 Route::get('/user/input-data', function () {
