@@ -129,8 +129,8 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <button class="btn-info btn btn-info shadow btn-xs sharp pt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#info-detail" data-id=""
-                                                        data-name="">
+                                                        data-bs-toggle="modal" data-bs-target="#info-detail-equip"
+                                                        data-id="" data-name="">
                                                         <i class="fa fa-info"></i>
                                                     </button>
                                                 </div>
@@ -160,8 +160,8 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <button class="btn-info btn btn-info shadow btn-xs sharp pt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#info-detail" data-id=""
-                                                        data-name="">
+                                                        data-bs-toggle="modal" data-bs-target="#info-detail-equip"
+                                                        data-id="" data-name="">
                                                         <i class="fa fa-info"></i>
                                                     </button>
                                                 </div>
@@ -359,62 +359,61 @@
                             </div>
                         </div>
                         <div class="modal fade" id="info-detail-equip">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" style="font-weight: bold; font-size: 20px">Detail Barang
                                         </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                        </button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control" placeholder="Cari..."
-                                                aria-label="Cari..." aria-describedby="button-addon2"id="searchInput">
+                                                aria-label="Cari..." aria-describedby="button-addon2" id="searchInput1">
                                             <button class="btn btn-outline-primary" type="button"
-                                                id="button-addon2">Cari</button>
+                                                id="button-addon2-1">Cari</button>
                                         </div>
-                                        <table class="table table-bordered" style="border-color: #ddd;">
-                                            <thead style="text-align: center;">
-                                                <tr>
-                                                    <th scope="col" style="font-weight: bold">Gambar</th>
-                                                    <th scope="col" style="font-weight: bold">Nama</th>
-                                                    <th scope="col" style="font-weight: bold">Seri</th>
-                                                    <th scope="col" style="font-weight: bold">Merk</th>
-                                                    <th scope="col" style="font-weight: bold">Jumlah</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><img src="{{ asset('/') }}images/logo.png" width="56"
-                                                            alt="">
-                                                    </td>
-                                                    <td>Obeng</td>
-                                                    <td>123</td>
-                                                    <td>Merk A</td>
-                                                    <td>3</td>
-                                                </tr>
-                                                {{-- <tr id="noValue" style="display: none;">
-                                <td colspan="2" style="text-align: center;">Tidak Ada Data</td>
-                            </tr> --}}
-                                            </tbody>
-                                            <script>
-                                                $(document).ready(function() {
-                                                    $('#button-addon2').click(function() {
-                                                        var searchText = $('#searchInput').val().toLowerCase();
-                                                        var $tableRows = $('table tbody tr');
-                                                        // var $noValueRow = $('#noValue');
-
-                                                        $tableRows.hide();
-                                                        $tableRows.filter(function() {
-                                                            return $(this).text().toLowerCase().indexOf(searchText) > -1;
-                                                        }).show();
-
-                                                        // $noValueRow.toggle($tableRows.filter(':visible').length === 0);
-                                                    });
-                                                });
-                                            </script>
-                                        </table>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" style="border-color: #ddd;">
+                                                <thead style="text-align: center;">
+                                                    <tr>
+                                                        <th scope="col" style="font-weight: bold">Gambar</th>
+                                                        <th scope="col" style="font-weight: bold">Nama</th>
+                                                        <th scope="col" style="font-weight: bold">Jumlah</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><img src="{{ asset('/') }}images/logo.png" width="56"
+                                                                alt=""></td>
+                                                        <td>Obeng</td>
+                                                        <td>3</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" placeholder="Cari..."
+                                                aria-label="Cari..." aria-describedby="button-addon2" id="searchInput2">
+                                            <button class="btn btn-outline-primary" type="button"
+                                                id="button-addon2-2">Cari</button>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" style="border-color: #ddd;">
+                                                <thead style="text-align: center;">
+                                                    <tr>
+                                                        <th scope="col" style="font-weight: bold">Seri</th>
+                                                        <th scope="col" style="font-weight: bold">Merk</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>123</td>
+                                                        <td>Merk A</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary light"
@@ -423,65 +422,64 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="modal fade" id="info-detail-done">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" style="font-weight: bold; font-size: 20px">Detail Barang
                                         </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                        </button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control" placeholder="Cari..."
-                                                aria-label="Cari..." aria-describedby="button-addon2"id="searchInput">
+                                                aria-label="Cari..." aria-describedby="button-addon2" id="searchInput3">
                                             <button class="btn btn-outline-primary" type="button"
-                                                id="button-addon2">Cari</button>
+                                                id="button-addon2-3">Cari</button>
                                         </div>
-                                        <table class="table table-bordered" style="border-color: #ddd;">
-                                            <thead style="text-align: center;">
-                                                <tr>
-                                                    <th scope="col" style="font-weight: bold">Gambar</th>
-                                                    <th scope="col" style="font-weight: bold">Nama</th>
-                                                    <th scope="col" style="font-weight: bold">Seri</th>
-                                                    <th scope="col" style="font-weight: bold">Merk</th>
-                                                    <th scope="col" style="font-weight: bold">Jumlah</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><img src="{{ asset('/') }}images/logo.png" width="56"
-                                                            alt="">
-                                                    </td>
-                                                    <td>Obeng</td>
-                                                    <td>123</td>
-                                                    <td>Merk A</td>
-                                                    <td>3</td>
-                                                </tr>
-                                                {{-- <tr id="noValue" style="display: none;">
-                                <td colspan="2" style="text-align: center;">Tidak Ada Data</td>
-                            </tr> --}}
-                                            </tbody>
-                                            <script>
-                                                $(document).ready(function() {
-                                                    $('#button-addon2').click(function() {
-                                                        var searchText = $('#searchInput').val().toLowerCase();
-                                                        var $tableRows = $('table tbody tr');
-                                                        // var $noValueRow = $('#noValue');
-
-                                                        $tableRows.hide();
-                                                        $tableRows.filter(function() {
-                                                            return $(this).text().toLowerCase().indexOf(searchText) > -1;
-                                                        }).show();
-
-                                                        // $noValueRow.toggle($tableRows.filter(':visible').length === 0);
-                                                    });
-                                                });
-                                            </script>
-                                        </table>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" style="border-color: #ddd;">
+                                                <thead style="text-align: center;">
+                                                    <tr>
+                                                        <th scope="col" style="font-weight: bold">Gambar</th>
+                                                        <th scope="col" style="font-weight: bold">Nama</th>
+                                                        <th scope="col" style="font-weight: bold">Jumlah</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><img src="{{ asset('/') }}images/logo.png" width="56"
+                                                                alt=""></td>
+                                                        <td>Obeng</td>
+                                                        <td>3</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" placeholder="Cari..."
+                                                aria-label="Cari..." aria-describedby="button-addon2" id="searchInput4">
+                                            <button class="btn btn-outline-primary" type="button"
+                                                id="button-addon2-4">Cari</button>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" style="border-color: #ddd;">
+                                                <thead style="text-align: center;">
+                                                    <tr>
+                                                        <th scope="col" style="font-weight: bold">Seri</th>
+                                                        <th scope="col" style="font-weight: bold">Merk</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>123</td>
+                                                        <td>Merk A</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary light"
                                             data-bs-dismiss="modal">Tutup</button>
@@ -489,6 +487,47 @@
                                 </div>
                             </div>
                         </div>
+
+                        <script>
+                            $(document).ready(function() {
+                                $('#button-addon2-1').click(function() {
+                                    var searchText = $('#searchInput1').val().toLowerCase();
+                                    var $tableRows = $('#info-detail-equip table tbody tr');
+                                    $tableRows.hide();
+                                    $tableRows.filter(function() {
+                                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
+                                    }).show();
+                                });
+
+                                $('#button-addon2-2').click(function() {
+                                    var searchText = $('#searchInput2').val().toLowerCase();
+                                    var $tableRows = $('#info-detail-equip table tbody tr');
+                                    $tableRows.hide();
+                                    $tableRows.filter(function() {
+                                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
+                                    }).show();
+                                });
+
+                                $('#button-addon2-3').click(function() {
+                                    var searchText = $('#searchInput3').val().toLowerCase();
+                                    var $tableRows = $('#info-detail-done table tbody tr');
+                                    $tableRows.hide();
+                                    $tableRows.filter(function() {
+                                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
+                                    }).show();
+                                });
+
+                                $('#button-addon2-4').click(function() {
+                                    var searchText = $('#searchInput4').val().toLowerCase();
+                                    var $tableRows = $('#info-detail-done table tbody tr');
+                                    $tableRows.hide();
+                                    $tableRows.filter(function() {
+                                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
+                                    }).show();
+                                });
+                            });
+                        </script>
+
                     </div>
                 </div>
             </div>
