@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SiswaSeeder::class,
             ToolmanSeeder::class,
+            BarangInventarisSeeder::class,
+            SeriBarangInventarisSeeder::class,
         ]);
     }
 }

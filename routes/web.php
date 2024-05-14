@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ToolmanController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\PeminjamanController;
 
 use App\Http\Middleware\CheckRole;
 
@@ -58,7 +59,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/user/show-data', [SiswaController::class, 'showInventory'])->name('show-user');
 
-        Route::get('/user/input-data', [SiswaController::class, 'showInputDataPinjam'])->name('borrow-user');
+        Route::get('/user/input-data', [PeminjamanController::class, 'showInputDataPinjam'])->name('borrow-user');
+        Route::post('/user/input-data', [PeminjamanController::class, 'inputDataPinjam'])->name('peminjaman.store');
 
         Route::get('/user/history', [SiswaController::class, 'showHistory'])->name('history-user');
 
