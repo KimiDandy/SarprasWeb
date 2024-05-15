@@ -46,6 +46,13 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/toolman/input-data', [ToolmanController::class, 'inputData'])->name('input-data-tool-man');
 
         Route::get('/toolman/history', [ToolmanController::class, 'showHistory'])->name('history-tool-man');
+        Route::get('/peminjaman/{id}/detail', [ToolmanController::class, 'getDetailBarang']);
+
+        Route::post('/peminjaman/approve', [PeminjamanController::class, 'setujuPeminjaman'])->name('peminjaman.approve');
+        Route::post('/peminjaman/reject', [PeminjamanController::class, 'tolakPeminjaman'])->name('peminjaman.reject');
+        Route::post('/peminjaman/complete', [PeminjamanController::class, 'selesaiPeminjaman'])->name('peminjaman.complete');
+
+
 
         Route::get('/toolman/edit-data', function () {
             return view('tool-man.inventory.edit-inventory');

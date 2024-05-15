@@ -50,7 +50,6 @@ class PeminjamanController extends Controller
             return redirect()->back()->with('error', 'Jumlah barang yang tersedia tidak mencukupi.');
         }
 
-        // Simpan data peminjaman
         $peminjaman = new Peminjaman;
         $peminjaman->tanggal_pinjam = $request->tanggal_pinjam;
         $peminjaman->tanggal_kembali = $request->tanggal_kembali;
@@ -58,7 +57,6 @@ class PeminjamanController extends Controller
         $peminjaman->id_user = Auth::id();
         $peminjaman->save();
 
-        // Simpan detail peminjaman dan update status seri barang
         foreach ($barangYangDiminta as $item) {
             $id_barang = $item['id_barang'];
             $jumlah = $item['jumlah'];
@@ -72,7 +70,7 @@ class PeminjamanController extends Controller
                 $detail = new DetailPeminjaman;
                 $detail->id_peminjaman = $peminjaman->id;
                 $detail->id_barang = $id_barang;
-                $detail->nomorSeribarang = $seriBarang->nomor_seri;
+                $detail->id_seribarang = $seriBarang->id;
                 $detail->save();
 
                 $seriBarang->status = 'Dipinjam';
@@ -82,5 +80,34 @@ class PeminjamanController extends Controller
 
         return redirect()->route('history-user')->with('success', 'Permohonan peminjaman berhasil diajukan');
     }
+
+    public function setujuPeminjaman(Request $request)
+{
+    $peminjaman = Peminjaman::findOrFail($request->id);
+    $peminjaman->status_perizinan = 'Disetujui';
+    $peminjaman->status_peminjaman = 'Berlangsung';
+    $peminjaman->save();
+
+    return response()->json(['success' => true]);
+}
+
+public function tolakPeminjama(Request $request)
+{
+    $peminjaman = Peminjaman::findOrFail($request->id);
+    $peminjaman->status_perizinan = 'Ditolak';
+    $peminjaman->save();
+
+    return response()->json(['success' => true]);
+}
+
+public function selesaiPeminjaman(Request $request)
+{
+    $peminjaman = Peminjaman::findOrFail($request->id);
+    $peminjaman->status_peminjaman = 'Selesai';
+    $peminjaman->save();
+
+    return response()->json(['success' => true]);
+}
+
 
 }

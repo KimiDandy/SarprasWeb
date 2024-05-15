@@ -18,4 +18,14 @@ class Peminjaman extends Model
         'status_peminjaman',
         'id_user',
     ];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'id_user', 'id_user');
+    }
+
+    public function details()
+    {
+        return $this->hasMany(DetailPeminjaman::class, 'id_peminjaman', 'id');
+    }
 }

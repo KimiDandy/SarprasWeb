@@ -14,6 +14,11 @@ class DetailPeminjaman extends Model
     protected $fillable = [
         'id_peminjaman',
         'id_barang',
-        'nomorSeribarang',
+        'id_seribarang',
     ];
+
+    public function peminjaman()
+    {
+        return $this->belongsTo(Peminjaman::class, 'id_peminjaman', 'id');
+    }
 }
