@@ -65,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user/dashboard', [SiswaController::class, 'show'])->name('dashboard-user');
 
         Route::get('/user/show-data', [SiswaController::class, 'showInventory'])->name('show-user');
+        Route::get('/get-seri-barang/{id}', [SiswaController::class, 'getSeriBarang'])->name('get-seri-barang');
 
         Route::get('/user/input-data', [PeminjamanController::class, 'showInputDataPinjam'])->name('borrow-user');
         Route::post('/user/input-data', [PeminjamanController::class, 'inputDataPinjam'])->name('peminjaman.store');

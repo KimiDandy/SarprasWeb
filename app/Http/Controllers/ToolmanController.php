@@ -22,19 +22,23 @@ class ToolmanController extends Controller
         $dataBarang = BarangInventaris::all();
     
         foreach ($dataBarang as $barang) {
-            $barang->stok = SeriBarangInventaris::where('id_barang', $barang->id)->count();
-            $barang->seriMerkStatus = SeriBarangInventaris::where('id_barang', $barang->id)->get(['nomor_seri', 'merk', 'status']);
+            $barang->stok = SeriBarangInventaris::where('id_barang', $barang->id)
+                                                ->where('status', 'Tersedia')
+                                                ->count();
+            $barang->seriMerkStatus = SeriBarangInventaris::where('id_barang', $barang->id)
+                                                            ->get(['nomor_seri', 'merk', 'status']);
         }
         
         Log::info($dataBarang);
         return view('tool-man.inventory.inventory-data', compact('dataBarang'));
     }
     
+    
     public function getSeriBarang($id)
-{
-    $seriBarang = SeriBarangInventaris::where('id_barang', $id)->get();
-    return response()->json(['seriMerkStatus' => $seriBarang]);
-}
+        {
+            $seriBarang = SeriBarangInventaris::where('id_barang', $id)->get();
+            return response()->json(['seriMerkStatus' => $seriBarang]);
+    }
 
     public function showInputData() {
         return view('tool-man.tool.input-tool');
@@ -118,15 +122,11 @@ private function preparePeminjamanData($peminjamanData)
                 'merk' => $seriBarang->merk,
             ];
         }
-        Log::info($detailSiswa);
-        Log::info($detailPeminjaman);
 
         $result[] = [
             'siswa' => $detailSiswa,
             'detail_peminjaman' => $detailPeminjaman,
         ];
-
-        Log::info($result);
     }
 
     return $result;

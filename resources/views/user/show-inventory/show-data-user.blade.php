@@ -7,7 +7,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header pb-0">
-                        <h2 class="card-title " style="font-weight: bold; font-size: 25px">Data Inventaris</h2>
+                        <h2 class="card-title" style="font-weight: bold; font-size: 25px">Data Inventaris</h2>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -47,7 +47,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="modal fade" id="info-detail">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -97,8 +96,8 @@
             type: 'GET',
             success: function(response) {
                 var seriBarangHtml = '';
-                response.seriDanMerk.forEach(function(item) {
-                    seriBarangHtml += '<td><td>' + item.nomor_seri + '</td><td>' + item.merk + '</td><td>' + item.merk + '</td></tr>';
+                response.seriMerkStatus.forEach(function(item) {
+                    seriBarangHtml += '<tr><td>' + item.nomor_seri + '</td><td>' + item.merk + '</td><td>' + item.status + '</td></tr>';
                 });
                 $('#seriBarang').html(seriBarangHtml);
                 $('#info-detail').modal('show');

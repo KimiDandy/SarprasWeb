@@ -31,7 +31,7 @@
 
                 <img src="{{ asset('/') }}images/logo.png" width="56" alt="">
                 <div class="brand-title">
-                    <h2 class="" style="color: var(--primary);">User</h2>
+                    <h2 class="" style="color: var(--primary);">Siswa</h2>
                     <span class="brand-sub-title">SMK Negeri 8 Jember</span>
                 </div>
             </a>
