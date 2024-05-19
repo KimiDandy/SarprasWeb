@@ -45,8 +45,13 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "build": [
+            "composer install",
+            "php artisan key:generate --ansi"
         ]
-    },
+    }
+    ,
     "extra": {
         "branch-alias": {
             "dev-master": "10.x-dev"
