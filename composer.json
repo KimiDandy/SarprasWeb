@@ -50,7 +50,7 @@
             "composer install",
             "php artisan key:generate --ansi"
         ]
-    }
+    }    
     ,
     "extra": {
         "branch-alias": {
