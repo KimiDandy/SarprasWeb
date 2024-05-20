@@ -96,13 +96,13 @@
                             <button class="tablinks" onclick="openTab(event, 'done')">Selesai</button>
                         </div>
 
-
-
-                        <div id="permission" class="tab-content">
+                        <!-- Permission Tab -->
+                        <div id="permission" class="tab-content active">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Cari..." aria-label="Cari..."
-                                    aria-describedby="button-addon2"id="searchInput">
-                                <button class="btn btn-outline-primary" type="button" id="button-addon2">Cari</button>
+                                    aria-describedby="button-addon2" id="searchInputPermission">
+                                <button class="btn btn-outline-primary" type="button"
+                                    id="button-addon2-permission">Cari</button>
                             </div>
                             <div class="table-responsive">
                                 <table class="table">
@@ -113,55 +113,43 @@
                                             <th style="font-weight: bold">Tanggal Pinjam</th>
                                             <th style="font-weight: bold">Tanggal Kembali</th>
                                             <th style="font-weight: bold">Status</th>
-                                            <th style="font-weight: bold">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($allPeminjaman as $peminjaman)
                                         <tr>
-                                            <td>1</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>
-                                                <div class="d-flex ">
+                                                <div class="d-flex">
                                                     <button class="btn-info btn btn-info shadow btn-xs sharp pt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#info-detail" data-id=""
-                                                        data-name="">
+                                                        data-bs-toggle="modal" data-bs-target="#info-detail"
+                                                        data-id="{{ $peminjaman['siswa']['id'] }}">
                                                         <i class="fa fa-info"></i>
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td>2024-05-13</td>
-                                            <td>2024-05-20</td>
+                                            <td>{{ $peminjaman['siswa']['tanggal_pinjam'] }}</td>
+                                            <td>{{ $peminjaman['siswa']['tanggal_kembali'] }}</td>
                                             <td>
-                                                {{-- @if ($item['']) --}}
-                                                <span class="badge light badge-warning" hidden>
+                                                <span class="badge light badge-warning">
                                                     <i class="fa fa-circle text-warning me-1"></i>
                                                     Menunggu
                                                 </span>
-                                                {{-- @else --}}
-                                                <span class="badge light badge-danger">
-                                                    <i class="fa fa-circle text-danger me-1"></i>
-                                                    Ditolak
-                                                </span>
-                                                {{-- @endif --}}
-                                            </td>
-                                            <td>
-                                                <div class="d-flex ">
-                                                    <button class="btn-danger btn btn-danger shadow btn-xs sharp pt-2"
-                                                        data-name="">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
+
+                        <!-- Ongoing Tab -->
                         <div id="ongoing" class="tab-content">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Cari..." aria-label="Cari..."
-                                    aria-describedby="button-addon2"id="searchInput">
-                                <button class="btn btn-outline-primary" type="button" id="button-addon2">Cari</button>
+                                    aria-describedby="button-addon2" id="searchInputOngoing">
+                                <button class="btn btn-outline-primary" type="button"
+                                    id="button-addon2-ongoing">Cari</button>
                             </div>
                             <div class="table-responsive">
                                 <table class="table">
@@ -169,51 +157,44 @@
                                         <tr>
                                             <th style="font-weight: bold">No</th>
                                             <th style="font-weight: bold">Barang</th>
-                                            {{-- <th style="font-weight: bold">Tanggal Pinjam</th> --}}
                                             <th style="font-weight: bold">Batas Kembali</th>
                                             <th style="font-weight: bold">Status</th>
-                                            <th style="font-weight: bold">Selesai</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($ongoingData as $peminjaman)
                                         <tr>
-                                            <td>1</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>
-                                                <div class="d-flex ">
+                                                <div class="d-flex">
                                                     <button class="btn-info btn btn-info shadow btn-xs sharp pt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#info-detail-ongoing"
-                                                        data-id="" data-name="">
+                                                        data-bs-toggle="modal" data-bs-target="#info-detail"
+                                                        data-id="{{ $peminjaman['siswa']['id'] }}">
                                                         <i class="fa fa-info"></i>
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td>2024-05-13</td>
-                                            {{-- <td>2024-05-20</td> --}}
+                                            <td>{{ $peminjaman['siswa']['tanggal_kembali'] }}</td>
                                             <td>
                                                 <span class="badge light badge-primary">
                                                     <i class="fa fa-circle text-primary me-1"></i>
                                                     Sedang Dipakai
                                                 </span>
-
-                                            </td>
-                                            <td>
-                                                <div class="form-check text-center">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="checkbox1">
-
-                                                </div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
+
+                        <!-- Done Tab -->
                         <div id="done" class="tab-content">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Cari..." aria-label="Cari..."
-                                    aria-describedby="button-addon2"id="searchInput">
-                                <button class="btn btn-outline-primary" type="button" id="button-addon2">Cari</button>
+                                    aria-describedby="button-addon2" id="searchInputDone">
+                                <button class="btn btn-outline-primary" type="button"
+                                    id="button-addon2-done">Cari</button>
                             </div>
                             <div class="table-responsive">
                                 <table class="table">
@@ -226,323 +207,177 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($completedData as $peminjaman)
                                         <tr>
-                                            <td>1</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>
-                                                <div class="d-flex ">
+                                                <div class="d-flex">
                                                     <button class="btn-info btn btn-info shadow btn-xs sharp pt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#info-detail-finish"
-                                                        data-id="" data-name="">
+                                                        data-bs-toggle="modal" data-bs-target="#info-detail"
+                                                        data-id="{{ $peminjaman['siswa']['id'] }}">
                                                         <i class="fa fa-info"></i>
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td>2024-05-13</td>
-                                            <td>2024-05-20</td>
+                                            <td>{{ $peminjaman['siswa']['tanggal_pinjam'] }}</td>
+                                            <td>{{ $peminjaman['siswa']['tanggal_kembali'] }}</td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
-
                                 </table>
                             </div>
-
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="info-detail">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" style="font-weight: bold; font-size: 20px">Detail Barang</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Cari..." aria-label="Cari..."
-                                aria-describedby="button-addon2" id="searchInput1">
-                            <button class="btn btn-outline-primary" type="button" id="button-addon2-5">Cari</button>
+
+                        <!-- Modal for detail barang -->
+                        <div class="modal fade" id="info-detail">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" style="font-weight: bold; font-size: 20px">Detail Barang</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" style="border-color: #ddd;">
+                                                <thead style="text-align: center;">
+                                                    <tr>
+                                                        <th scope="col" style="font-weight: bold">Gambar</th>
+                                                        <th scope="col" style="font-weight: bold">Nama</th>
+                                                        <th scope="col" style="font-weight: bold">Jumlah</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="detail-items-table"></tbody>
+                                            </table>
+                                        </div>
+                                        <div class="table-responsive mt-3">
+                                            <table class="table table-bordered" style="border-color: #ddd;">
+                                                <thead style="text-align: center;">
+                                                    <tr>
+                                                        <th scope="col" style="font-weight: bold">Jenis</th>
+                                                        <th scope="col" style="font-weight: bold">Seri</th>
+                                                        <th scope="col" style="font-weight: bold">Merk</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="detail-seri-table"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary light" data-bs-dismiss="modal">Tutup</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered" style="border-color: #ddd;">
-                                <thead style="text-align: center;">
-                                    <tr>
-                                        <th scope="col" style="font-weight: bold">Gambar</th>
-                                        <th scope="col" style="font-weight: bold">Nama</th>
-                                        <th scope="col" style="font-weight: bold">Jumlah</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><img src="{{ asset('/') }}images/logo.png" width="56" alt="">
-                                        </td>
-                                        <td>Obeng</td>
-                                        <td>3</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Cari..." aria-label="Cari..."
-                                aria-describedby="button-addon2" id="searchInput2">
-                            <button class="btn btn-outline-primary" type="button" id="button-addon2-6">Cari</button>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered" style="border-color: #ddd;">
-                                <thead style="text-align: center;">
-                                    <tr>
-                                        <th scope="col" style="font-weight: bold">Seri</th>
-                                        <th scope="col" style="font-weight: bold">Merk</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>123</td>
-                                        <td>Merk A</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary light" data-bs-dismiss="modal">Tutup</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="info-detail-ongoing">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" style="font-weight: bold; font-size: 20px">Detail Barang</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Cari..." aria-label="Cari..."
-                                aria-describedby="button-addon2" id="searchInput1">
-                            <button class="btn btn-outline-primary" type="button" id="button-addon2-1">Cari</button>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered" style="border-color: #ddd;">
-                                <thead style="text-align: center;">
-                                    <tr>
-                                        <th scope="col" style="font-weight: bold">Gambar</th>
-                                        <th scope="col" style="font-weight: bold">Nama</th>
-                                        <th scope="col" style="font-weight: bold">Jumlah</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><img src="{{ asset('/') }}images/logo.png" width="56" alt="">
-                                        </td>
-                                        <td>Obeng</td>
-                                        <td>3</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Cari..." aria-label="Cari..."
-                                aria-describedby="button-addon2" id="searchInput2">
-                            <button class="btn btn-outline-primary" type="button" id="button-addon2-2">Cari</button>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered" style="border-color: #ddd;">
-                                <thead style="text-align: center;">
-                                    <tr>
-                                        <th scope="col" style="font-weight: bold">Seri</th>
-                                        <th scope="col" style="font-weight: bold">Merk</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>123</td>
-                                        <td>Merk A</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary light" data-bs-dismiss="modal">Tutup</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="info-detail-finish">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" style="font-weight: bold; font-size: 20px">Detail Barang</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Cari..." aria-label="Cari..."
-                                aria-describedby="button-addon2" id="searchInput3">
-                            <button class="btn btn-outline-primary" type="button" id="button-addon2-3">Cari</button>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered" style="border-color: #ddd;">
-                                <thead style="text-align: center;">
-                                    <tr>
-                                        <th scope="col" style="font-weight: bold">Gambar</th>
-                                        <th scope="col" style="font-weight: bold">Nama</th>
-                                        <th scope="col" style="font-weight: bold">Jumlah</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><img src="{{ asset('/') }}images/logo.png" width="56" alt="">
-                                        </td>
-                                        <td>Obeng</td>
-                                        <td>3</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Cari..." aria-label="Cari..."
-                                aria-describedby="button-addon2" id="searchInput4">
-                            <button class="btn btn-outline-primary" type="button" id="button-addon2-4">Cari</button>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered" style="border-color: #ddd;">
-                                <thead style="text-align: center;">
-                                    <tr>
-                                        <th scope="col" style="font-weight: bold">Seri</th>
-                                        <th scope="col" style="font-weight: bold">Merk</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>123</td>
-                                        <td>Merk A</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary light" data-bs-dismiss="modal">Tutup</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <script>
-            $(document).ready(function() {
-                $('#button-addon2-1').click(function() {
-                    var searchText = $('#searchInput1').val().toLowerCase();
-                    var $tableRows = $('#info-detail-ongoing table tbody tr');
-                    $tableRows.hide();
-                    $tableRows.filter(function() {
-                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
-                    }).show();
-                });
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                document.getElementById("defaultOpen").click();
+                            });
 
-                $('#button-addon2-2').click(function() {
-                    var searchText = $('#searchInput2').val().toLowerCase();
-                    var $tableRows = $('#info-detail-ongoing table tbody tr');
-                    $tableRows.hide();
-                    $tableRows.filter(function() {
-                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
-                    }).show();
-                });
+                            function openTab(evt, tabName) {
+                                var i, tabcontent, tablinks;
 
-                $('#button-addon2-3').click(function() {
-                    var searchText = $('#searchInput3').val().toLowerCase();
-                    var $tableRows = $('#info-detail-finish table tbody tr');
-                    $tableRows.hide();
-                    $tableRows.filter(function() {
-                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
-                    }).show();
-                });
+                                tabcontent = document.getElementsByClassName("tab-content");
+                                for (i = 0; i < tabcontent.length; i++) {
+                                    tabcontent[i].style.display = "none";
+                                }
 
-                $('#button-addon2-4').click(function() {
-                    var searchText = $('#searchInput4').val().toLowerCase();
-                    var $tableRows = $('#info-detail-finish table tbody tr');
-                    $tableRows.hide();
-                    $tableRows.filter(function() {
-                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
-                    }).show();
-                });
+                                tablinks = document.getElementsByClassName("tablinks");
+                                for (i = 0; i < tablinks.length; i++) {
+                                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                                }
 
+                                document.getElementById(tabName).style.display = "block";
+                                evt.currentTarget.className += " active";
+                            }
 
-                $('#button-addon2-5').click(function() {
-                    var searchText = $('#searchInput3').val().toLowerCase();
-                    var $tableRows = $('#info-detail table tbody tr');
-                    $tableRows.hide();
-                    $tableRows.filter(function() {
-                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
-                    }).show();
-                });
+                            document.getElementById("defaultOpen").click();
 
-                $('#button-addon2-6').click(function() {
-                    var searchText = $('#searchInput4').val().toLowerCase();
-                    var $tableRows = $('#info-detail table tbody tr');
-                    $tableRows.hide();
-                    $tableRows.filter(function() {
-                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
-                    }).show();
-                });
-            });
-        </script>
+                            // JavaScript untuk menangani modal detail barang
+                            $(document).ready(function() {
+                                console.log('Document is ready.');
 
-        <script>
-            function openTab(evt, tabName) {
-                var i, tabcontent, tablinks;
+                                var allPeminjamanData = @json(array_merge($allPeminjaman, $ongoingData, $completedData));
+                                console.log('All Peminjaman Data:', allPeminjamanData);
 
-                tabcontent = document.getElementsByClassName("tab-content");
-                for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-                }
+                                $('#info-detail').on('show.bs.modal', function(event) {
+                                    console.log('Modal is being shown.');
+                                    var button = $(event.relatedTarget);
+                                    var loanId = button.data('id');
+                                    console.log('Loan ID:', loanId);
 
-                tablinks = document.getElementsByClassName("tablinks");
-                for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", "");
-                }
+                                    var selectedDetailPeminjaman = allPeminjamanData.find(detail => detail.siswa.id === loanId);
+                                    console.log('Selected Detail Peminjaman:', selectedDetailPeminjaman);
 
-                document.getElementById(tabName).style.display = "block";
-                evt.currentTarget.className += " active";
-            }
+                                    if (!selectedDetailPeminjaman) {
+                                        console.error('Detail Peminjaman tidak ditemukan!');
+                                        return;
+                                    }
 
-            document.getElementById("defaultOpen").click();
-        </script>
-        <script>
-            // Fungsi untuk menampilkan pesan Sweet Alert
-            function showConfirmation() {
+                                    var itemsTable = $('#detail-items-table');
+                                    var detailsTable = $('#detail-seri-table');
+                                    itemsTable.empty();
+                                    detailsTable.empty();
 
-                Swal.fire({
-                    title: 'Confirm',
-                    text: 'Are you sure returned this?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, Done!',
-                    cancelButtonText: 'Cancel'
-                }).then((result) => {
+                                    var groupedItems = groupItems(selectedDetailPeminjaman.detail_peminjaman);
+                                    console.log('Grouped Items:', groupedItems);
 
-                    if (result.isConfirmed) {
+                                    for (const [key, value] of Object.entries(groupedItems)) {
+                                        itemsTable.append('<tr><td><img src="' + value.gambar + '" width="56" alt=""></td><td>' + value.nama_barang + '</td><td>' + value.count + '</td></tr>');
+                                    }
 
-                        Swal.fire(
-                            'Done!',
-                            'Returned',
-                            'success'
-                        );
-                    }
-                });
-            }
+                                    selectedDetailPeminjaman.detail_peminjaman.forEach(function(detail) {
+                                        detailsTable.append('<tr><td>' + detail.nama_barang + '</td><td>' + detail.seri + '</td><td>' + detail.merk + '</td></tr>');
+                                    });
 
-            $(document).ready(function() {
-                $('#checkbox1').on('change', function() {
-                    if ($(this).is(':checked')) {
-                        // Tampilkan pesan konfirmasi saat checkbox diubah menjadi dicentang
-                        showConfirmation();
-                    }
-                });
-            });
-        </script>
+                                    console.log('Items Table HTML:', itemsTable.html());
+                                    console.log('Details Table HTML:', detailsTable.html());
+                                });
+
+                                $('#button-addon2-permission').click(function() {
+                                    var searchText = $('#searchInputPermission').val().toLowerCase();
+                                    var $tableRows = $('#permission table tbody tr');
+                                    $tableRows.hide();
+                                    $tableRows.filter(function() {
+                                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
+                                    }).show();
+                                });
+
+                                $('#button-addon2-ongoing').click(function() {
+                                    var searchText = $('#searchInputOngoing').val().toLowerCase();
+                                    var $tableRows = $('#ongoing table tbody tr');
+                                    $tableRows.hide();
+                                    $tableRows.filter(function() {
+                                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
+                                    }).show();
+                                });
+
+                                $('#button-addon2-done').click(function() {
+                                    var searchText = $('#searchInputDone').val().toLowerCase();
+                                    var $tableRows = $('#done table tbody tr');
+                                    $tableRows.hide();
+                                    $tableRows.filter(function() {
+                                        return $(this).text().toLowerCase().indexOf(searchText) > -1;
+                                    }).show();
+                                });
+                            });
+
+                            function groupItems(details) {
+                                let groupedItems = {};
+
+                                details.forEach(detail => {
+                                    if (groupedItems[detail.nama_barang]) {
+                                        groupedItems[detail.nama_barang].count += 1;
+                                    } else {
+                                        groupedItems[detail.nama_barang] = {
+                                            count: 1,
+                                            gambar: detail.gambar,
+                                            nama_barang: detail.nama_barang
+                                        };
+                                    }
+                                });
+
+                                return groupedItems;
+                            }
+                        </script>
     @endsection

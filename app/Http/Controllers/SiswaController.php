@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BarangInventaris;
 use App\Models\SeriBarangInventaris;
+use App\Models\Peminjaman;
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class SiswaController extends Controller
 {
@@ -40,9 +42,68 @@ class SiswaController extends Controller
     public function showInputDataPinjam() {
         return view('user.borrow.borrow-user');
     }
+    public function showHistory()
+    {
+        $studentId = auth()->user()->id; 
 
-    public function showHistory() {
-        return view('user.history-borrow.history-user');
+        $pendingPeminjaman = Peminjaman::with('siswa')
+                                    ->where('id_user', $studentId)
+                                    ->where('status_perizinan', 'Menunggu')
+                                    ->get();
+
+        $ongoingPeminjaman = Peminjaman::with('siswa')
+                                    ->where('id_user', $studentId)
+                                    ->where('status_perizinan', 'Disetujui')
+                                    ->where('status_peminjaman', 'Berlangsung')
+                                    ->get();
+
+        $completedPeminjaman = Peminjaman::with('siswa')
+                                        ->where('id_user', $studentId)
+                                        ->where('status_perizinan', 'Disetujui')
+                                        ->where('status_peminjaman', 'Selesai')
+                                        ->get();
+
+        $allPeminjaman = $this->preparePeminjamanData($pendingPeminjaman);
+        $ongoingData = $this->preparePeminjamanData($ongoingPeminjaman);
+        $completedData = $this->preparePeminjamanData($completedPeminjaman);
+
+        return view('user.history-borrow.history-user', compact('allPeminjaman', 'ongoingData', 'completedData'));
     }
 
+    private function preparePeminjamanData($peminjamanData)
+    {
+        $result = [];
+
+        foreach ($peminjamanData as $peminjaman) {
+            $siswa = $peminjaman->siswa;
+            $detailSiswa = [
+                'nisn' => $siswa->nisn,
+                'nama' => $siswa->nama,
+                'kelas' => $siswa->kelas,
+                'no_hp' => $siswa->no_hp,
+                'tanggal_pinjam' => $peminjaman->tanggal_pinjam,
+                'tanggal_kembali' => $peminjaman->tanggal_kembali,
+                'id' => $peminjaman->id,
+            ];
+
+            $detailPeminjaman = [];
+            foreach ($peminjaman->details as $detail) {
+                $barang = BarangInventaris::findOrFail($detail->id_barang);
+                $seriBarang = SeriBarangInventaris::findOrFail($detail->id_seribarang);
+                $detailPeminjaman[] = [
+                    'gambar' => $barang->gambar_barang,
+                    'nama_barang' => $barang->nama_barang,
+                    'seri' => $seriBarang->nomor_seri,
+                    'merk' => $seriBarang->merk,
+                ];
+            }
+
+            $result[] = [
+                'siswa' => $detailSiswa,
+                'detail_peminjaman' => $detailPeminjaman,
+            ];
+        }
+
+        return $result;
+    }
 }

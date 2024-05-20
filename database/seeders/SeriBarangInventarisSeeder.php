@@ -35,6 +35,20 @@ class SeriBarangInventarisSeeder extends Seeder
         ]);
 
         DB::table('seribaranginventaris')->insert([
+            'nomor_seri' => '104',
+            'merk' => 'Facom',
+            'status' => 'Tersedia',
+            'id_barang' => '1',
+        ]);
+
+        DB::table('seribaranginventaris')->insert([
+            'nomor_seri' => '105',
+            'merk' => 'Facom',
+            'status' => 'Tersedia',
+            'id_barang' => '1',
+        ]);
+
+        DB::table('seribaranginventaris')->insert([
             'nomor_seri' => '201',
             'merk' => 'Joyko',
             'status' => 'Tersedia',
@@ -44,6 +58,13 @@ class SeriBarangInventarisSeeder extends Seeder
         DB::table('seribaranginventaris')->insert([
             'nomor_seri' => '202',
             'merk' => 'Joyko',
+            'status' => 'Tersedia',
+            'id_barang' => '2',
+        ]);
+
+        DB::table('seribaranginventaris')->insert([
+            'nomor_seri' => '203',
+            'merk' => 'Faber',
             'status' => 'Tersedia',
             'id_barang' => '2',
         ]);
