@@ -26,6 +26,8 @@ use App\Http\Controllers\ToolmanController;
 //     return view('auth.register');
 // })->name('register');
 
+
+
 Route::redirect('/', '/toolman/dashboard');
 
 Route::get('/login', [LoginController::class, 'show'])->name('pages.login');
