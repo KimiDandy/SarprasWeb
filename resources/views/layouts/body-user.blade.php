@@ -31,7 +31,7 @@
 
                 <img src="{{ asset('/') }}images/logo.png" width="56" alt="">
                 <div class="brand-title">
-                    <h2 class="" style="color: var(--primary);">User</h2>
+                    <h2 class="" style="color: var(--primary);">Siswa</h2>
                     <span class="brand-sub-title">SMK Negeri 8 Jember</span>
                 </div>
             </a>
@@ -59,7 +59,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <form action="" method="post">
+                                    <form action="{{ route('pages.login') }}" method="get">
                                         @csrf
                                         <button type="submit" class="dropdown-item ai-icon">
                                             <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"

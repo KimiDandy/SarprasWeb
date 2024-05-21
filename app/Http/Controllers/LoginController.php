@@ -27,9 +27,9 @@ class LoginController extends Controller
 
         // Redirect user based on their role
         if ($user->role === 'Siswa') {
-            return redirect()->route('pages.inventaris_siswa');
+            return redirect()->route('dashboard-user');
         } elseif ($user->role === 'Toolman') {
-            return redirect()->route('pages.inventaris_toolman');
+            return redirect()->route('dashboard-tool-man');
         }
     }
     return back()->withErrors(['username' => 'Username atau password salah']);

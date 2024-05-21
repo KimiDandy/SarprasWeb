@@ -19,4 +19,9 @@ class Siswa extends Model
         'jurusan',
         'id_user',
     ];
+
+    public function peminjamans()
+    {
+        return $this->hasMany(Peminjaman::class, 'id_user', 'id_user');
+    }
 }

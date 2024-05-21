@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ToolmanController;
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\PeminjamanController;
+
+use App\Http\Middleware\CheckRole;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +27,6 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-
-
-
 Route::redirect('/', '/toolman/dashboard');
 
 Route::get('/login', [LoginController::class, 'show'])->name('pages.login');
@@ -40,37 +35,47 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/register', [RegistrationController::class, 'show'])->name('pages.register');
 Route::post('/register', [RegistrationController::class, 'register'])->name('register');
 
-// TOOLMAN
 
-Route::get('/toolman/dashboard', [ToolmanController::class, 'show'])->name('dashboard-tool-man');
+Route::middleware(['auth'])->group(function () {
+    Route::middleware(CheckRole::class . ':Toolman')->group(function () {
+        // TOOLMAN
 
-Route::get('/toolman/inventory', [ToolmanController::class, 'showInventory'])->name('inventory-tool-man');
-Route::get('/get-seri-barang/{id}', [ToolmanController::class, 'getSeriBarang'])->name('get-seri-barang');
+        Route::get('/toolman/dashboard', [ToolmanController::class, 'show'])->name('dashboard-tool-man');
 
-
-Route::get('/toolman/input-data', [ToolmanController::class, 'showInputData'])->name('input-tool-man');
-Route::post('/toolman/input-data', [ToolmanController::class, 'inputData'])->name('input-data-tool-man');
-
-Route::get('/toolman/history', [ToolmanController::class, 'showHistory'])->name('history-tool-man');
-
-Route::get('/toolman/edit-data', function () {
-    return view('tool-man.inventory.edit-inventory');
-})->name('edit-inventory');
+        Route::get('/toolman/inventory', [ToolmanController::class, 'showInventory'])->name('inventory-tool-man');
+        Route::get('/get-seri-barang/{id}', [ToolmanController::class, 'getSeriBarang'])->name('get-seri-barang');
 
 
-//USER
-Route::get('/user/input-data', function () {
-    return view('user.borrow.borrow-user');
-})->name('borrow-user');
+        Route::get('/toolman/input-data', [ToolmanController::class, 'showInputData'])->name('input-tool-man');
+        Route::post('/toolman/input-data', [ToolmanController::class, 'inputData'])->name('input-data-tool-man');
 
-Route::get('/user/show-data', function () {
-    return view('user.show-inventory.show-data-user');
-})->name('show-user');
+        Route::get('/toolman/history', [ToolmanController::class, 'showHistory'])->name('history-tool-man');
+        Route::get('/peminjaman/{id}/detail', [ToolmanController::class, 'getDetailBarang']);
 
-Route::get('/user/history', function () {
-    return view('user.history-borrow.history-user');
-})->name('history-user');
+        Route::post('/peminjaman/approve', [PeminjamanController::class, 'setujuPeminjaman'])->name('peminjaman.approve');
+        Route::post('/peminjaman/reject', [PeminjamanController::class, 'tolakPeminjaman'])->name('peminjaman.reject');
+        Route::post('/peminjaman/complete', [PeminjamanController::class, 'selesaiPeminjaman'])->name('peminjaman.complete');
 
-Route::get('/user/dashboard', function () {
-    return view('user.dashboard');
-})->name('dashboard-user');
+
+
+        Route::get('/toolman/edit-data', function () {
+            return view('tool-man.inventory.edit-inventory');
+        })->name('edit-inventory');
+    });
+
+    Route::middleware(CheckRole::class . ':Siswa')->group(function () {
+        //USER
+
+        Route::get('/user/dashboard', [SiswaController::class, 'show'])->name('dashboard-user');
+
+        Route::get('/user/show-data', [SiswaController::class, 'showInventory'])->name('show-user');
+        Route::get('/get-seri-barang/{id}', [SiswaController::class, 'getSeriBarang'])->name('get-seri-barang');
+
+        Route::get('/user/input-data', [PeminjamanController::class, 'showInputDataPinjam'])->name('borrow-user');
+        Route::post('/user/input-data', [PeminjamanController::class, 'inputDataPinjam'])->name('peminjaman.store');
+
+        Route::get('/user/history', [SiswaController::class, 'showHistory'])->name('history-user');
+
+    });
+
+});

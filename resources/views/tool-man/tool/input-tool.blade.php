@@ -197,19 +197,19 @@
                     <div class="card-body">
                         <div class="basic-form">
                             <form id="tambahBarangForm" method="post" class="form-valide-with-icon needs-validation"
-                                novalidate>
-                                {{-- @csrf --}}
+                                novalidate enctype="multipart/form-data">
+                                @csrf
                                 <div class="row mb-3">
                                     <div class="col-lg-8">
                                         <label class="text-label form-label ps-2">Nama Barang</label>
                                         <input type="text" class="form-control input-default custom-border"
-                                            placeholder="Masukkan Nama Barang" name="name" required>
+                                            placeholder="Masukkan Nama Barang" name="nama_barang" required>
                                     </div>
                                     <div class="col-lg-2">
                                         <label class="text-label form-label ps-2">Jumlah</label>
                                         <div class="input-group">
                                             <button class="btn btn-outline-primary" type="button" id="tambah">+</button>
-                                            <input type="text" id="jumlahBarang" name="jumlahBarang" value="0"
+                                            <input type="text" id="jumlahBarang" name="jumlah_barang" value="0"
                                                 min="1" class="form-control p-0 text-center" required>
                                             <button class="btn btn-outline-primary" type="button" id="kurang">-</button>
                                         </div>
@@ -224,7 +224,7 @@
                                 <div class="col-sm-12 p-0 text-center align-item-center justify-content-center">
                                     <div class="card-body">
                                         <div class="container align-item-center justify-content-center">
-                                            <input type="file" id="gambarBarang" accept="image/*" name="gambar_barang"
+                                            <input type="file" id="gambar_barang" accept="image/*" name="gambar_barang"
                                                 style="display: none" required>
                                             <div class="img-area" data-img="">
                                                 <i class='fas fa-cloud-upload-alt '
@@ -299,15 +299,15 @@
                         });
 
                         const selectImage = document.querySelector('.select-image');
-                        const inputGambarBarang = document.querySelector('#gambarBarang');
+                        const inputGambar_barang = document.querySelector('#gambar_barang');
                         const imgArea = document.querySelector('.img-area');
 
                         selectImage.addEventListener('click', function() {
-                            inputGambarBarang.click();
+                            inputGambar_barang.click();
                         });
 
-                        inputGambarBarang.addEventListener('change', function() {
-                            handleImageChange(inputGambarBarang, imgArea);
+                        inputGambar_barang.addEventListener('change', function() {
+                            handleImageChange(inputGambar_barang, imgArea);
                         });
 
                         function handleImageChange(inputFile, imgArea) {
@@ -335,9 +335,9 @@
                         }
 
                         function validateForm() {
-                            const name = document.querySelector('[name="name"]').value.trim();
+                            const name = document.querySelector('[name="nama_barang"]').value.trim();
                             const jumlahBarang = parseInt(document.querySelector('#jumlahBarang').value);
-                            const inputFile = document.querySelector('#gambarBarang').files.length;
+                            const inputFile = document.querySelector('#gambar_barang').files.length;
 
                             if (!name) {
                                 Swal.fire('Error', 'Nama Barang harus diisi', 'error');

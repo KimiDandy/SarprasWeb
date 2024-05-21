@@ -24,5 +24,17 @@ class UserSeeder extends Seeder
             'username' => '222',
             'password' => '222',
         ]);
+
+        DB::table('users')->insert([
+            'role' => 'Siswa',
+            'username' => '333',
+            'password' => '333',
+        ]);
+
+        DB::table('users')->insert([
+            'role' => 'Siswa',
+            'username' => '444',
+            'password' => '444',
+        ]);
     }
 }

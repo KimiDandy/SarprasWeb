@@ -14,12 +14,30 @@ class SiswaSeeder extends Seeder
     public function run()
     {
         DB::table('siswas')->insert([
-            'nisn' => '123123123',
-            'nama' => 'Kimi',
+            'nisn' => '1111',
+            'nama' => 'Kimi Dandy',
             'kelas' => 'XII TKJ',
             'nomor_hp' => '085210035577',
             'jurusan' => 'Teknik Jaringan Komputer dan Telekomunikasi',
-            'id_user' => 1, // User 1 (Siswa)
+            'id_user' => 1,
+        ]);
+
+        DB::table('siswas')->insert([
+            'nisn' => '2222',
+            'nama' => 'Ariz Saputra',
+            'kelas' => 'XI TKJ',
+            'nomor_hp' => '085210035578',
+            'jurusan' => 'Otomatif',
+            'id_user' => 3,
+        ]);
+
+        DB::table('siswas')->insert([
+            'nisn' => '3333',
+            'nama' => 'Hairul Anam',
+            'kelas' => 'X TKJ',
+            'nomor_hp' => '085210035579',
+            'jurusan' => 'Teknik Jaringan Komputer dan Telekomunikasi',
+            'id_user' => 4,
         ]);
     }
 }

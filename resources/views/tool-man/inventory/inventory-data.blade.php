@@ -22,30 +22,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    {{-- @foreach ($data as $item) --}}
+                                    @foreach ($dataBarang as $index => $barang)
                                     <tr>
-                                        {{-- <td>{{ $loop->iteration }}</td> --}}
-                                        <td>1</td>
-                                        <td><img src="{{ asset('/') }}images/logo.png" width="56" alt="">
-                                        </td>
-                                        <td>Logo</td>
-                                        <td>2</td>
+                                        <td>{{ $index + 1 }}</td>
                                         <td>
-                                            <div class="d-flex ">
-                                                <button class="btn-info btn btn-info shadow btn-xs sharp pt-2 me-2"
-                                                    data-bs-toggle="modal" data-bs-target="#info-detail" data-id=""
-                                                    data-name="">
+                                            <img src="{{ $barang->gambar_barang }}" width="56" alt="Gambar Barang">
+                                        </td>
+                                        <td>{{ $barang->nama_barang }}</td>
+                                        <td>{{ $barang->stok }}</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <button class="btn-info btn btn-info shadow btn-xs sharp pt-2 info-detail-btn" data-bs-target="#info-detail" data-bs-toggle="modal" data-id="{{ $barang->id }}" data-name="{{ $barang->nama_barang }}">
                                                     <i class="fa fa-info"></i>
                                                 </button>
-                                                <a href="{{ route('edit-inventory') }}"
-                                                    class="btn btn-primary shadow btn-xs sharp me-1 pt-2"><i
-                                                        class="fas fa-pencil-alt"></i></a>
                                             </div>
                                         </td>
-
                                     </tr>
-
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -72,13 +65,15 @@
                             <tr>
                                 <th scope="col" style="font-weight: bold">Seri</th>
                                 <th scope="col" style="font-weight: bold">Merk</th>
+                                <th scope="col" style="font-weight: bold">Status</th>
                             </tr>
                         </thead>
                         <tbody id="seriBarang">
-                            @foreach ($barang->seriDanMerk as $item)
+                            @foreach ($barang->seriMerkStatus as $item)
                                 <tr>
                                     <td>{{ $item->nomor_seri }}</td>
                                     <td>{{ $item->merk }}</td>
+                                    <td>{{ $item->status }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -93,7 +88,7 @@
     </div>
 
     <script>
-           $(document).ready(function() {
+        $(document).ready(function() {
     $('.info-detail-btn').click(function() {
         var idBarang = $(this).data('id');
         $.ajax({
@@ -101,8 +96,8 @@
             type: 'GET',
             success: function(response) {
                 var seriBarangHtml = '';
-                response.seriDanMerk.forEach(function(item) {
-                    seriBarangHtml += '<tr><td>' + item.nomor_seri + '</td><td>' + item.merk + '</td></tr>';
+                response.seriMerkStatus.forEach(function(item) {
+                    seriBarangHtml += '<tr><td>' + item.nomor_seri + '</td><td>' + item.merk + '</td><td>' + item.status + '</td></tr>';
                 });
                 $('#seriBarang').html(seriBarangHtml);
                 $('#info-detail').modal('show');
