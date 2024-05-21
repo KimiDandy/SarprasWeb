@@ -34,6 +34,7 @@ class ToolmanController extends Controller
     }
     
     
+    
     public function getSeriBarang($id)
         {
             $seriBarang = SeriBarangInventaris::where('id_barang', $id)->get();
@@ -45,36 +46,37 @@ class ToolmanController extends Controller
     }
 
     public function inputData(Request $request)
-    {
-        Log::info($request);
+{
+    Log::info($request->all());
 
-        if($request->hasFile('gambar_barang')) {
-            $gambarPath = $request->file('gambar_barang')->store('public/gambar_barang');
-            $gambarPath = asset(str_replace('public/', 'storage/', $gambarPath));
-        } else {
-            $gambarPath = null;
-        }
-
-        $barang = new BarangInventaris();
-        $barang->nama_barang = $request->input('nama_barang');
-        $barang->gambar_barang = $gambarPath;
-        $barang->save();
-
-        $nomorSeri = $request->input('nomor_seri');
-        $merk = $request->input('merk');
-        $idBarang = $barang->id;
-
-        foreach($nomorSeri as $key => $nomor) {
-            $seriBarang = new SeriBarangInventaris();
-            $seriBarang->nomor_seri = $nomor;
-            $seriBarang->merk = $merk[$key];
-            $seriBarang->status = 'Tersedia';
-            $seriBarang->id_barang = $idBarang;
-            $seriBarang->save();
-        }
-
-        return redirect()->route('inventory-tool-man')->with('success', 'Barang berhasil disimpan.');
+    if($request->hasFile('gambar_barang')) {
+        $gambarPath = $request->file('gambar_barang')->store('public/gambar_barang');
+        $gambarUrl = str_replace('public/', 'storage/', $gambarPath);
+    } else {
+        $gambarUrl = null;
     }
+
+    $barang = new BarangInventaris();
+    $barang->nama_barang = $request->input('nama_barang');
+    $barang->gambar_barang = $gambarUrl;
+    $barang->save();
+
+    $nomorSeri = $request->input('nomor_seri');
+    $merk = $request->input('merk');
+    $idBarang = $barang->id;
+
+    foreach($nomorSeri as $key => $nomor) {
+        $seriBarang = new SeriBarangInventaris();
+        $seriBarang->nomor_seri = $nomor;
+        $seriBarang->merk = $merk[$key];
+        $seriBarang->status = 'Tersedia';
+        $seriBarang->id_barang = $idBarang;
+        $seriBarang->save();
+    }
+
+    return redirect()->route('inventory-tool-man')->with('success', 'Barang berhasil disimpan.');
+}
+
 
     public function showHistory()
 {

@@ -1,14 +1,61 @@
-/.phpunit.cache
 /node_modules
-/public/build
-/public/hot
-/vendor
-Homestead.json
+/npm-debug.log
+/yarn-error.log
+/pnpm-debug.log
+/.svelte-kit
+/.nuxt
+/coverage
+/.husky/_
+
+# Ignore built files.
+public/storage
+public/hot
+storage/*.key
+.env
+.env.backup
+.env.*.backup
+
+# Ignore node_modules.
+node_modules/
+# Ignore compiled css, js and maps files.
+public/css/app.css
+public/js/app.js
+public/mix-manifest.json
+public/mix-manifest.cache
+
+# Ignore the build and hot directories.
+build/
+public/hot/
+public/build/
+
+# Ignore the Vite dev server.
+.vite/deps
+.vite/cache
+.vite/build
+
+# Ignore Dusk files and folders.
+.dusk.local.env
+.dusk/config.json
+screenshots/
+
+# Ignore special files.
 Homestead.yaml
-auth.json
-npm-debug.log
-yarn-error.log
+Homestead.json
+.next
+.project
+.next.local
+*.sublime-*
+.idea
+.env.testing
+.env.example
+
+# Ignore the vendor directory.
+vendor/
+
+# Ignore temporary files.
+*.log
+*.sql
+*.sqlite
 /.fleet
-/.idea
 /.vscode
-.vercel
+/.vercel

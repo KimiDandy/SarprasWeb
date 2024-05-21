@@ -26,7 +26,7 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>
-                                            <img src="{{ $barang->gambar_barang }}" width="56" alt="Gambar Barang">
+                                            <img src="{{ asset($barang->gambar_barang) }}" width="56" alt="Gambar Barang">
                                         </td>
                                         <td>{{ $barang->nama_barang }}</td>
                                         <td>{{ $barang->stok }}</td>
@@ -89,25 +89,24 @@
 
     <script>
         $(document).ready(function() {
-    $('.info-detail-btn').click(function() {
-        var idBarang = $(this).data('id');
-        $.ajax({
-            url: '/get-seri-barang/' + idBarang,
-            type: 'GET',
-            success: function(response) {
-                var seriBarangHtml = '';
-                response.seriMerkStatus.forEach(function(item) {
-                    seriBarangHtml += '<tr><td>' + item.nomor_seri + '</td><td>' + item.merk + '</td><td>' + item.status + '</td></tr>';
+            $('.info-detail-btn').click(function() {
+                var idBarang = $(this).data('id');
+                $.ajax({
+                    url: '/get-seri-barang/' + idBarang,
+                    type: 'GET',
+                    success: function(response) {
+                        var seriBarangHtml = '';
+                        response.seriMerkStatus.forEach(function(item) {
+                            seriBarangHtml += '<tr><td>' + item.nomor_seri + '</td><td>' + item.merk + '</td><td>' + item.status + '</td></tr>';
+                        });
+                        $('#seriBarang').html(seriBarangHtml);
+                        $('#info-detail').modal('show');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
                 });
-                $('#seriBarang').html(seriBarangHtml);
-                $('#info-detail').modal('show');
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
+            });
         });
-    });
-});
-
     </script>
 @endsection
