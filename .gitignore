@@ -3,9 +3,6 @@
 /public/build
 /public/hot
 /vendor
-.env
-.env.backup
-.env.production
 Homestead.json
 Homestead.yaml
 auth.json
