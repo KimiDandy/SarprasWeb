@@ -27,8 +27,6 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
-Route::redirect('/', '/toolman/dashboard');
-
 Route::get('/login', [LoginController::class, 'show'])->name('pages.login');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
