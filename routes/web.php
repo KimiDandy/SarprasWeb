@@ -23,6 +23,10 @@ use App\Http\Middleware\CheckRole;
 
 // AUTH
 
+Route::get('/', function () {
+    return view('landing');
+})->name('landing');
+
 Route::redirect('/', '/toolman/dashboard');
 
 Route::get('/login', [LoginController::class, 'show'])->name('pages.login');
