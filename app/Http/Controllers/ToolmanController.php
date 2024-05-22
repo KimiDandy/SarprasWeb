@@ -33,6 +33,42 @@ class ToolmanController extends Controller
         return view('tool-man.inventory.inventory-data', compact('dataBarang'));
     }
     
+    public function editInventory($id) {
+        $barang = BarangInventaris::findOrFail($id);
+        $seriBarang = SeriBarangInventaris::where('id_barang', $id)->get();
+        return view('tool-man.inventory.edit-inventory', compact('barang', 'seriBarang'));
+    }
+    
+    public function updateInventory(Request $request, $id) {
+        $barang = BarangInventaris::findOrFail($id);
+    
+        if ($request->hasFile('gambar_barang')) {
+            $gambarPath = $request->file('gambar_barang')->store('public/gambar_barang');
+            $gambarUrl = str_replace('public/', 'storage/', $gambarPath);
+            $barang->gambar_barang = $gambarUrl;
+        }
+    
+        $barang->nama_barang = $request->input('nama_barang');
+        $barang->stok = $request->input('jumlah_barang');
+        $barang->save();
+    
+        $nomorSeri = $request->input('nomor_seri');
+        $merk = $request->input('merk');
+        $idBarang = $barang->id;
+    
+        SeriBarangInventaris::where('id_barang', $idBarang)->delete();
+    
+        foreach($nomorSeri as $key => $nomor) {
+            $seriBarang = new SeriBarangInventaris();
+            $seriBarang->nomor_seri = $nomor;
+            $seriBarang->merk = $merk[$key];
+            $seriBarang->status = 'Tersedia';
+            $seriBarang->id_barang = $idBarang;
+            $seriBarang->save();
+        }
+    
+        return redirect()->route('inventory-tool-man')->with('success', 'Barang berhasil diupdate.');
+    }
     
     
     public function getSeriBarang($id)

@@ -11,7 +11,7 @@
                     <hr class="m-0" style="opacity: 30%; height: 0.7px;">
                     <div class="card-body">
                         <div class="basic-form">
-                            <form id="editBarangForm" action="{{ route('update.inventory', $barang->id) }}" method="post" enctype="multipart/form-data" class="form-valide-with-icon needs-validation"
+                            <form id="editBarangForm" method="post" class="form-valide-with-icon needs-validation"
                                 novalidate>
                                 {{-- @csrf  --}}
 
@@ -44,41 +44,26 @@
                                     <div class="col-lg-8">
                                         <label class="text-label form-label ps-2">Nama Barang</label>
                                         <input type="text" class="form-control input-default custom-border"
-                                            placeholder="Edit Nama Barang" name="nama_barang" value="{{ $barang->nama_barang }}" required>
+                                            placeholder="Edit Nama Barang" name="nama_barang" required>
                                     </div>
                                     <div class="col-lg-4">
                                         <label class="text-label form-label ps-2">Jumlah Barang</label>
                                         <input type="number" class="form-control input-default custom-border"
-                                            placeholder="Edit Jumlah" name="jumlah_barang" value="{{ $barang->stok }}" required>
+                                            placeholder="Edit Jumlah" name="jumlah_barang" required>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
-                                    <div class="col-lg-12">
-                                        <label class="text-label form-label ps-2">Daftar Seri dan Merk</label>
-                                        <div id="seri-container">
-                                            @foreach ($seriBarang as $seri)
-                                                <div class="row seri-item mb-2 align-items-center">
-                                                    <div class="col-lg-5">
-                                                        <input type="text" class="form-control input-default custom-border"
-                                                            placeholder="Edit Seri" name="nomor_seri[]" value="{{ $seri->nomor_seri }}" required>
-                                                    </div>
-                                                    <div class="col-lg-5">
-                                                        <input type="text" class="form-control input-default custom-border"
-                                                            placeholder="Edit Merk" name="merk[]" value="{{ $seri->merk }}" required>
-                                                    </div>
-                                                    <div class="col-lg-2 d-flex justify-content-around">
-                                                        <button type="button" class="btn btn-danger delete-seri-btn">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
+                                    <div class="col-lg-6">
+                                        <label class="text-label form-label ps-2">Merk</label>
+                                        <input type="text" class="form-control input-default custom-border"
+                                            placeholder="Edit Merk" name="merk" required>
                                     </div>
-                                </div>
-                                <div class="d-flex justify-content-end">
-                                    <button type="button" class="btn btn-primary" id="add-seri-btn">Tambah Item</button>
+                                    <div class="col-lg-6">
+                                        <label class="text-label form-label ps-2">Seri</label>
+                                        <input type="text" class="form-control input-default custom-border"
+                                            placeholder="Edit Seri" name="seri" required>
+                                    </div>
                                 </div>
                                 <button type="button" class="btn btn-success" id="submitBtn">Simpan</button>
                                 <button type="button" class="btn btn-danger" id="deleteBtn">Hapus</button>
@@ -135,52 +120,6 @@
                     )
                 }
             });
-        });
-
-        document.getElementById('add-seri-btn').addEventListener('click', function() {
-            const container = document.getElementById('seri-container');
-            const div = document.createElement('div');
-            div.className = 'row seri-item mb-2 align-items-center';
-            div.innerHTML = `
-                <div class="col-lg-5">
-                    <input type="text" class="form-control input-default custom-border"
-                        placeholder="Seri" name="nomor_seri[]" required>
-                </div>
-                <div class="col-lg-5">
-                    <input type="text" class="form-control input-default custom-border"
-                        placeholder="Merk" name="merk[]" required>
-                </div>
-                <div class="col-lg-2 d-flex justify-content-around">
-                    <button type="button" class="btn btn-danger delete-seri-btn">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </div>
-            `;
-            container.appendChild(div);
-        });
-
-        document.addEventListener('click', function(event) {
-            if (event.target.closest('.delete-seri-btn')) {
-                Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: "Data akan dihapus!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, Hapus!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        const seriItem = event.target.closest('.seri-item');
-                        seriItem.remove();
-                        Swal.fire(
-                            'Dihapus!',
-                            'Item telah dihapus.',
-                            'success'
-                        );
-                    }
-                });
-            }
         });
     </script>
 @endsection

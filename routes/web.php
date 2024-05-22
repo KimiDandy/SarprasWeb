@@ -42,7 +42,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/toolman/inventory', [ToolmanController::class, 'showInventory'])->name('inventory-tool-man');
         Route::get('/get-seri-barang/{id}', [ToolmanController::class, 'getSeriBarang'])->name('get-seri-barang');
-
+        
+        Route::get('/inventory/edit/{id}', [ToolmanController::class, 'editInventory'])->name('edit.inventory');
+        Route::post('/inventory/update/{id}', [ToolmanController::class, 'updateInventory'])->name('update.inventory');
 
         Route::get('/toolman/input-data', [ToolmanController::class, 'showInputData'])->name('input-tool-man');
         Route::post('/toolman/input-data', [ToolmanController::class, 'inputData'])->name('input-data-tool-man');
