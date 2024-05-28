@@ -56,11 +56,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/peminjaman/reject', [PeminjamanController::class, 'tolakPeminjaman'])->name('peminjaman.reject');
         Route::post('/peminjaman/complete', [PeminjamanController::class, 'selesaiPeminjaman'])->name('peminjaman.complete');
 
-
+        Route::get('/toolman/data-siswa', [ToolmanController::class, 'showSiswa'])->name('inventory-siswa-tool-man');
 
         Route::get('/toolman/edit-data', function () {
             return view('tool-man.inventory.edit-inventory');
         })->name('edit-inventory');
+
+        Route::get('/toolman/edit-data-siswa', function () {
+            return view('tool-man.inventory_siswa.edit-siswa');
+        })->name('edit-siswa');
     });
 
     Route::middleware(CheckRole::class . ':Siswa')->group(function () {

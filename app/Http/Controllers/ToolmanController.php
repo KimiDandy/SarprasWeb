@@ -170,5 +170,8 @@ private function preparePeminjamanData($peminjamanData)
     return $result;
 }
 
+    public function showSiswa() {
+        return view('tool-man.inventory_siswa.data-siswa');
+    }
 
 }

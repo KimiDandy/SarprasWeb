@@ -109,6 +109,12 @@
                             <span class="nav-text">Riwayat Peminjaman</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('inventory-siswa-tool-man') }}" class="" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                            <span class="nav-text">Data Siswa</span>
+                        </a>
+                    </li>
                 </ul>
 
 
