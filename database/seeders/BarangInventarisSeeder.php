@@ -16,11 +16,13 @@ class BarangInventarisSeeder extends Seeder
         DB::table('baranginventaris')->insert([
             'nama_barang' => 'Obeng',
             'gambar_barang' => 'storage/gambar_barang/5idSPQ8Dayj9dSjiuF438uCzwod7oSlHWMBrBJB4.jpg',
+            'jurusan' => 'Otomotif',
         ]);
 
         DB::table('baranginventaris')->insert([
             'nama_barang' => 'Spidol',
             'gambar_barang' => 'storage/gambar_barang/HWLUyrmUSGIlIcgtW55ZzbCvqDGe5Y9S84shgs1D.jpg',
+            'jurusan' => 'TKJ',
         ]);
     }
 }

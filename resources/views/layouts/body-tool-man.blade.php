@@ -92,6 +92,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('inventory-siswa-tool-man') }}" class="" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                            <span class="nav-text">Data Siswa</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('inventory-tool-man') }}" class="" aria-expanded="false">
                             <i class="fas fa-boxes"></i>
                             <span class="nav-text">Data Inventaris</span>
@@ -110,9 +116,6 @@
                         </a>
                     </li>
                 </ul>
-
-
-
             </div>
         </div>
 

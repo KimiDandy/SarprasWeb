@@ -14,5 +14,6 @@ class BarangInventaris extends Model
     protected $fillable = [
         'nama_barang',
         'gambar_barang',
+        'jurusan',
     ];
 }

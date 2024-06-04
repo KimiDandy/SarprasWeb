@@ -9,18 +9,6 @@ use App\Http\Controllers\PeminjamanController;
 
 use App\Http\Middleware\CheckRole;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-
 // AUTH
 
 Route::get('/', function () {
@@ -42,7 +30,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/toolman/inventory', [ToolmanController::class, 'showInventory'])->name('inventory-tool-man');
         Route::get('/get-seri-barang/{id}', [ToolmanController::class, 'getSeriBarang'])->name('get-seri-barang');
-
+        
+        Route::get('/inventory/edit/{id}', [ToolmanController::class, 'editInventory'])->name('edit.inventory');
+        Route::post('/inventory/update/{id}', [ToolmanController::class, 'updateInventory'])->name('update.inventory');
 
         Route::get('/toolman/input-data', [ToolmanController::class, 'showInputData'])->name('input-tool-man');
         Route::post('/toolman/input-data', [ToolmanController::class, 'inputData'])->name('input-data-tool-man');
@@ -54,11 +44,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/peminjaman/reject', [PeminjamanController::class, 'tolakPeminjaman'])->name('peminjaman.reject');
         Route::post('/peminjaman/complete', [PeminjamanController::class, 'selesaiPeminjaman'])->name('peminjaman.complete');
 
-
+        Route::get('/toolman/data-siswa', [ToolmanController::class, 'showSiswa'])->name('inventory-siswa-tool-man');
 
         Route::get('/toolman/edit-data', function () {
             return view('tool-man.inventory.edit-inventory');
         })->name('edit-inventory');
+
+        Route::get('/toolman/edit-data-siswa', function () {
+            return view('tool-man.inventory_siswa.edit-siswa');
+        })->name('edit-siswa');
     });
 
     Route::middleware(CheckRole::class . ':Siswa')->group(function () {

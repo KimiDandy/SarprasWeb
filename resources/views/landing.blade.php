@@ -40,7 +40,7 @@
                             <a class="nav-link" data-role="smoothscroll" href="#services">Layanan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-primary ml-lg-2" href="{{ route('register') }}">Daftar</a>
+                            <a class="btn btn-primary ml-lg-2" href="{{ route('login') }}">Login</a>
                         </li>
                     </ul>
                 </div>

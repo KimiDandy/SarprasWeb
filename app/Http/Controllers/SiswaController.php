@@ -29,7 +29,7 @@ class SiswaController extends Controller
         }
         
         Log::info($dataBarang);
-        return view('tool-man.inventory.inventory-data', compact('dataBarang'));
+        return view('user.show-inventory.show-data-user', compact('dataBarang'));
     }
     
     

@@ -35,8 +35,11 @@
                                                 <button class="btn-info btn btn-info shadow btn-xs sharp pt-2 info-detail-btn" data-bs-target="#info-detail" data-bs-toggle="modal" data-id="{{ $barang->id }}" data-name="{{ $barang->nama_barang }}">
                                                     <i class="fa fa-info"></i>
                                                 </button>
+                                                <a href="{{ route('edit.inventory', $barang->id) }}" class="btn btn-primary shadow btn-xs sharp pt-2 ms-1">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
                                             </div>
-                                        </td>
+                                        </td>                                        
                                     </tr>
                                     @endforeach
                                 </tbody>
