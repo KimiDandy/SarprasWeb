@@ -15,12 +15,12 @@ class BarangInventarisSeeder extends Seeder
     {
         DB::table('baranginventaris')->insert([
             'nama_barang' => 'Obeng',
-            'gambar_barang' => '/storage/gambar_barang/qwyCSxD20W3LzJmghIJZc1lErTlhIpC5l58gI0Vs.jpg',
+            'gambar_barang' => 'storage/gambar_barang/5idSPQ8Dayj9dSjiuF438uCzwod7oSlHWMBrBJB4.jpg',
         ]);
 
         DB::table('baranginventaris')->insert([
-            'nama_barang' => 'Papan Tulis',
-            'gambar_barang' => '/storage/gambar_barang/ci3KlQwKB96IvI5Qf1zpOmmhMkgqT2JJHxrc41AD.jpg',
+            'nama_barang' => 'Spidol',
+            'gambar_barang' => 'storage/gambar_barang/HWLUyrmUSGIlIcgtW55ZzbCvqDGe5Y9S84shgs1D.jpg',
         ]);
     }
 }

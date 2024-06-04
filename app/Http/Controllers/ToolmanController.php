@@ -28,12 +28,10 @@ class ToolmanController extends Controller
             $barang->seriMerkStatus = SeriBarangInventaris::where('id_barang', $barang->id)
                                                             ->get(['nomor_seri', 'merk', 'status']);
         }
-        
+    
         Log::info($dataBarang);
         return view('tool-man.inventory.inventory-data', compact('dataBarang'));
     }
-    
-    
     
     public function getSeriBarang($id)
         {
@@ -50,8 +48,8 @@ class ToolmanController extends Controller
     Log::info($request->all());
 
     if($request->hasFile('gambar_barang')) {
-        $gambarPath = $request->file('gambar_barang')->store('public/gambar_barang');
-        $gambarUrl = str_replace('public/', 'storage/', $gambarPath);
+        $gambarPath = $request->file('gambar_barang')->store('gambar_barang', 'public');
+        $gambarUrl = 'storage/' . $gambarPath;
     } else {
         $gambarUrl = null;
     }

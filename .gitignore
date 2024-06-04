@@ -8,7 +8,7 @@
 /.husky/_
 
 # Ignore built files.
-public/storage
+# public/storage
 public/hot
 storage/*.key
 .env
