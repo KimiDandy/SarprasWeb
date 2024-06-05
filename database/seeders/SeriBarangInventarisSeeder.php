@@ -68,5 +68,19 @@ class SeriBarangInventarisSeeder extends Seeder
             'status' => 'Tersedia',
             'id_barang' => '2',
         ]);
+
+        DB::table('seribaranginventaris')->insert([
+            'nomor_seri' => '301',
+            'merk' => 'Optik',
+            'status' => 'Tersedia',
+            'id_barang' => '3',
+        ]);
+
+        DB::table('seribaranginventaris')->insert([
+            'nomor_seri' => '302',
+            'merk' => 'Optik',
+            'status' => 'Tersedia',
+            'id_barang' => '3',
+        ]);
     }
 }

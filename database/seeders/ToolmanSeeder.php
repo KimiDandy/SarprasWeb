@@ -16,8 +16,15 @@ class ToolmanSeeder extends Seeder
         DB::table('toolmans')->insert([
             'nama' => 'Mogi',
             'nomor_hp' => '085210035588',
-            'jurusan' => 'Teknik Jaringan Komputer dan Telekomunikasi',
-            'id_user' => 2, // User 2 (Toolman)
+            'jurusan' => 'TKJ',
+            'id_user' => 1, 
+        ]);
+
+        DB::table('toolmans')->insert([
+            'nama' => 'Moja',
+            'nomor_hp' => '085210035588',
+            'jurusan' => 'Otomotif',
+            'id_user' => 2,
         ]);
     }
 }

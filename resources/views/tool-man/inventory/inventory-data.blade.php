@@ -92,24 +92,25 @@
 
     <script>
         $(document).ready(function() {
-            $('.info-detail-btn').click(function() {
-                var idBarang = $(this).data('id');
-                $.ajax({
-                    url: '/get-seri-barang/' + idBarang,
-                    type: 'GET',
-                    success: function(response) {
-                        var seriBarangHtml = '';
-                        response.seriMerkStatus.forEach(function(item) {
-                            seriBarangHtml += '<tr><td>' + item.nomor_seri + '</td><td>' + item.merk + '</td><td>' + item.status + '</td></tr>';
-                        });
-                        $('#seriBarang').html(seriBarangHtml);
-                        $('#info-detail').modal('show');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
+    $('.info-detail-btn').click(function() {
+        var idBarang = $(this).data('id');
+        $.ajax({
+            url: '/get-seri-barang/' + idBarang,
+            type: 'GET',
+            success: function(response) {
+                var seriBarangHtml = '';
+                response.seriMerkStatus.forEach(function(item) {
+                    seriBarangHtml += '<tr><td>' + item.nomor_seri + '</td><td>' + item.merk + '</td><td>' + item.status + '</td></tr>';
                 });
-            });
+                $('#seriBarang').html(seriBarangHtml);
+                $('#info-detail').modal('show');
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
         });
+    });
+});
+
     </script>
 @endsection

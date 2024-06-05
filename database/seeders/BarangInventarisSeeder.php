@@ -24,5 +24,11 @@ class BarangInventarisSeeder extends Seeder
             'gambar_barang' => 'storage/gambar_barang/HWLUyrmUSGIlIcgtW55ZzbCvqDGe5Y9S84shgs1D.jpg',
             'jurusan' => 'TKJ',
         ]);
+
+        DB::table('baranginventaris')->insert([
+            'nama_barang' => 'Kabel',
+            'gambar_barang' => 'storage/gambar_barang/Vs8KINivgTmoaLsiGUdu2cT6PJOfnPj7su392w9b.jpg',
+            'jurusan' => 'TKJ',
+        ]);
     }
 }

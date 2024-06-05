@@ -21,15 +21,15 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/register', [RegistrationController::class, 'show'])->name('pages.register');
 Route::post('/register', [RegistrationController::class, 'register'])->name('register');
 
+Route::get('/get-seri-barang/{id}', [SiswaController::class, 'getSeriBarang'])->name('get-seri-barang');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(CheckRole::class . ':Toolman')->group(function () {
-        // TOOLMAN
 
         Route::get('/toolman/dashboard', [ToolmanController::class, 'show'])->name('dashboard-tool-man');
 
         Route::get('/toolman/inventory', [ToolmanController::class, 'showInventory'])->name('inventory-tool-man');
-        Route::get('/get-seri-barang/{id}', [ToolmanController::class, 'getSeriBarang'])->name('get-seri-barang');
         
         Route::get('/inventory/edit/{id}', [ToolmanController::class, 'editInventory'])->name('edit.inventory');
         Route::post('/inventory/update/{id}', [ToolmanController::class, 'updateInventory'])->name('update.inventory');
@@ -56,12 +56,10 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(CheckRole::class . ':Siswa')->group(function () {
-        //USER
 
         Route::get('/user/dashboard', [SiswaController::class, 'show'])->name('dashboard-user');
 
         Route::get('/user/show-data', [SiswaController::class, 'showInventory'])->name('show-user');
-        Route::get('/get-seri-barang/{id}', [SiswaController::class, 'getSeriBarang'])->name('get-seri-barang');
 
         Route::get('/user/input-data', [PeminjamanController::class, 'showInputDataPinjam'])->name('borrow-user');
         Route::post('/user/input-data', [PeminjamanController::class, 'inputDataPinjam'])->name('peminjaman.store');

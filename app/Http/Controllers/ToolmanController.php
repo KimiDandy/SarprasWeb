@@ -19,19 +19,22 @@ class ToolmanController extends Controller
     }
 
     public function showInventory() {
-        $dataBarang = BarangInventaris::all();
+        $jurusan = session('jurusan');
+    
+        $dataBarang = BarangInventaris::where('jurusan', $jurusan)->get();
     
         foreach ($dataBarang as $barang) {
             $barang->stok = SeriBarangInventaris::where('id_barang', $barang->id)
                                                 ->where('status', 'Tersedia')
                                                 ->count();
             $barang->seriMerkStatus = SeriBarangInventaris::where('id_barang', $barang->id)
-                                                            ->get(['nomor_seri', 'merk', 'status']);
+                                                        ->get(['nomor_seri', 'merk', 'status']);
         }
     
         Log::info($dataBarang);
         return view('tool-man.inventory.inventory-data', compact('dataBarang'));
     }
+    
     
     public function editInventory($id) {
         $barang = BarangInventaris::findOrFail($id);
@@ -83,6 +86,8 @@ class ToolmanController extends Controller
 {
     Log::info($request->all());
 
+    $jurusan = session('jurusan');
+
     if($request->hasFile('gambar_barang')) {
         $gambarPath = $request->file('gambar_barang')->store('gambar_barang', 'public');
         $gambarUrl = 'storage/' . $gambarPath;
@@ -93,6 +98,7 @@ class ToolmanController extends Controller
     $barang = new BarangInventaris();
     $barang->nama_barang = $request->input('nama_barang');
     $barang->gambar_barang = $gambarUrl;
+    $barang->jurusan = $jurusan;
     $barang->save();
 
     $nomorSeri = $request->input('nomor_seri');
@@ -112,17 +118,24 @@ class ToolmanController extends Controller
 }
 
 
-    public function showHistory()
+public function showHistory()
 {
-    $pendingPeminjaman = Peminjaman::with('siswa')->where('status_perizinan', 'Menunggu')->get();
-    $ongoingPeminjaman = Peminjaman::with('siswa')
-                                    ->where('status_perizinan', 'Disetujui')
-                                    ->where('status_peminjaman', 'Berlangsung')
-                                    ->get();
-    $completedPeminjaman = Peminjaman::with('siswa')
-                                    ->where('status_perizinan', 'Disetujui')
-                                    ->where('status_peminjaman', 'Selesai')
-                                    ->get();
+    // Ambil jurusan dari session
+    $jurusan = session('jurusan');
+    Log::info('Jurusan from session: ' . $jurusan);
+
+    // Ambil data peminjaman berdasarkan jurusan siswa yang sesuai
+    $pendingPeminjaman = Peminjaman::whereHas('siswa', function ($query) use ($jurusan) {
+        $query->where('jurusan', $jurusan);
+    })->where('status_perizinan', 'Menunggu')->with('siswa')->get();
+
+    $ongoingPeminjaman = Peminjaman::whereHas('siswa', function ($query) use ($jurusan) {
+        $query->where('jurusan', $jurusan);
+    })->where('status_perizinan', 'Disetujui')->where('status_peminjaman', 'Berlangsung')->with('siswa')->get();
+
+    $completedPeminjaman = Peminjaman::whereHas('siswa', function ($query) use ($jurusan) {
+        $query->where('jurusan', $jurusan);
+    })->where('status_perizinan', 'Disetujui')->where('status_peminjaman', 'Selesai')->with('siswa')->get();
 
     $allPeminjaman = $this->preparePeminjamanData($pendingPeminjaman);
     $ongoingData = $this->preparePeminjamanData($ongoingPeminjaman);
@@ -141,7 +154,7 @@ private function preparePeminjamanData($peminjamanData)
             'nisn' => $siswa->nisn,
             'nama' => $siswa->nama,
             'kelas' => $siswa->kelas,
-            'no_hp' => $siswa->no_hp,
+            'no_hp' => $siswa->nomor_hp,
             'tanggal_pinjam' => $peminjaman->tanggal_pinjam,
             'tanggal_kembali' => $peminjaman->tanggal_kembali,
             'id' => $peminjaman->id,

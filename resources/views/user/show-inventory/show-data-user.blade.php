@@ -26,7 +26,7 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>
-                                            <img src="{{ $barang->gambar_barang }}" width="56" alt="Gambar Barang">
+                                            <img src="{{ asset($barang->gambar_barang) }}" width="56" alt="Gambar Barang">
                                         </td>
                                         <td>{{ $barang->nama_barang }}</td>
                                         <td>{{ $barang->stok }}</td>

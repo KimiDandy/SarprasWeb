@@ -18,7 +18,9 @@ class SiswaController extends Controller
     }
 
     public function showInventory() {
-        $dataBarang = BarangInventaris::all();
+        $jurusan = session('jurusan');
+    
+        $dataBarang = BarangInventaris::where('jurusan', $jurusan)->get();
     
         foreach ($dataBarang as $barang) {
             $barang->stok = SeriBarangInventaris::where('id_barang', $barang->id)

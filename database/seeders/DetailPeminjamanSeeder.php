@@ -15,24 +15,6 @@ class DetailPeminjamanSeeder extends Seeder
     {
         DB::table('detailpeminjamans')->insert([
             'id_peminjaman' => '1',
-            'id_barang' => '1',
-            'id_seribarang' => '1',
-        ]);
-
-        DB::table('detailpeminjamans')->insert([
-            'id_peminjaman' => '1',
-            'id_barang' => '1',
-            'id_seribarang' => '2',
-        ]);
-
-        DB::table('detailpeminjamans')->insert([
-            'id_peminjaman' => '1',
-            'id_barang' => '1',
-            'id_seribarang' => '3',
-        ]);
-
-        DB::table('detailpeminjamans')->insert([
-            'id_peminjaman' => '1',
             'id_barang' => '2',
             'id_seribarang' => '6',
         ]);
@@ -46,19 +28,37 @@ class DetailPeminjamanSeeder extends Seeder
         DB::table('detailpeminjamans')->insert([
             'id_peminjaman' => '2',
             'id_barang' => '1',
-            'id_seribarang' => '4',
+            'id_seribarang' => '1',
         ]);
 
         DB::table('detailpeminjamans')->insert([
             'id_peminjaman' => '2',
+            'id_barang' => '1',
+            'id_seribarang' => '2',
+        ]);
+
+        DB::table('detailpeminjamans')->insert([
+            'id_peminjaman' => '2',
+            'id_barang' => '1',
+            'id_seribarang' => '3',
+        ]);
+
+        DB::table('detailpeminjamans')->insert([
+            'id_peminjaman' => '3',
             'id_barang' => '2',
             'id_seribarang' => '8',
         ]);
 
         DB::table('detailpeminjamans')->insert([
             'id_peminjaman' => '3',
-            'id_barang' => '1',
-            'id_seribarang' => '5',
+            'id_barang' => '3',
+            'id_seribarang' => '9',
+        ]);
+
+        DB::table('detailpeminjamans')->insert([
+            'id_peminjaman' => '3',
+            'id_barang' => '3',
+            'id_seribarang' => '10',
         ]);
     }
 }

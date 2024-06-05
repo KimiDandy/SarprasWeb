@@ -46,8 +46,8 @@
                                         <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
                                             <label for="role" class="form-label">Daftar Sebagai</label>
                                             <select class="js-regist-as custom-border" name="role">
-
-                                                <option value="ToolMan">ToolMan</option>
+                                                <option value="Pilih">Pilih Role</option>
+                                                <option value="Toolman">ToolMan</option>
                                                 <option value="Siswa">Siswa</option>
                                             </select>
                                         </div>
@@ -57,7 +57,7 @@
                                             <select class="js-major custom-border" name="jurusan">
 
                                                 <option value="Otomotif">Otomotif</option>
-                                                <option value="Perikanan">Perikanan</option>
+                                                <option value="Perikanan">TKJ</option>
                                             </select>
                                         </div>
 
@@ -183,12 +183,11 @@
                             'Daftar Sebagai');
                 }
 
-                // Tampilkan atau sembunyikan kolom sesuai dengan pilihan
                 var selectedValue = $(this).val();
                 if (selectedValue === 'Siswa') {
                     $('#siswaFields').show();
                     $('#toolmanFields').hide();
-                } else if (selectedValue === 'ToolMan') {
+                } else if (selectedValue === 'Toolman') {
                     $('#siswaFields').hide();
                     $('#toolmanFields').show();
                 } else {

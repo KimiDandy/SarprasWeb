@@ -18,7 +18,7 @@ class PeminjamanSeeder extends Seeder
             'tanggal_kembali' => '2024-05-21',
             'status_perizinan' => 'Menunggu',
             'status_peminjaman' => null,
-            'id_user' => 1,
+            'id_user' => 3,
         ]);
 
         DB::table('peminjamans')->insert([
@@ -26,7 +26,7 @@ class PeminjamanSeeder extends Seeder
             'tanggal_kembali' => '2024-05-21',
             'status_perizinan' => 'Menunggu',
             'status_peminjaman' => null,
-            'id_user' => 3,
+            'id_user' => 4,
         ]);
 
         DB::table('peminjamans')->insert([
@@ -34,7 +34,7 @@ class PeminjamanSeeder extends Seeder
             'tanggal_kembali' => '2024-05-22',
             'status_perizinan' => 'Menunggu',
             'status_peminjaman' => null,
-            'id_user' => 4,
+            'id_user' => 5,
         ]);
     }
 }

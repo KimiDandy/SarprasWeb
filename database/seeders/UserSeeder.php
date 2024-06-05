@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'role' => 'Siswa',
+            'role' => 'Toolman',
             'username' => '111',
             'password' => '111',
         ]);
@@ -35,6 +35,12 @@ class UserSeeder extends Seeder
             'role' => 'Siswa',
             'username' => '444',
             'password' => '444',
+        ]);
+
+        DB::table('users')->insert([
+            'role' => 'Siswa',
+            'username' => '555',
+            'password' => '555',
         ]);
     }
 }

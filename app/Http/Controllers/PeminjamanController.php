@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\Log;
 
 class PeminjamanController extends Controller
 {
-    public function showInputDataPinjam() {
-        $barang = Baranginventaris::all();
-        return view('user.borrow.borrow-user', compact('barang'));
-    }
+    public function showInputDataPinjam()
+{
+    $jurusan = session('jurusan');
+    $barang = BarangInventaris::where('jurusan', $jurusan)->get();
+    
+    return view('user.borrow.borrow-user', compact('barang'));
+}
 
     public function inputDataPinjam(Request $request)
     {
