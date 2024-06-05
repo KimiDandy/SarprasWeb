@@ -228,7 +228,6 @@
                             </div>
                         </div>
 
-                        <!-- Modal for detail barang -->
                         <div class="modal fade" id="info-detail">
                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                 <div class="modal-content">
@@ -268,72 +267,72 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
                                 document.getElementById("defaultOpen").click();
                             });
-
+                        
                             function openTab(evt, tabName) {
                                 var i, tabcontent, tablinks;
-
+                        
                                 tabcontent = document.getElementsByClassName("tab-content");
                                 for (i = 0; i < tabcontent.length; i++) {
                                     tabcontent[i].style.display = "none";
                                 }
-
+                        
                                 tablinks = document.getElementsByClassName("tablinks");
                                 for (i = 0; i < tablinks.length; i++) {
                                     tablinks[i].className = tablinks[i].className.replace(" active", "");
                                 }
-
+                        
                                 document.getElementById(tabName).style.display = "block";
                                 evt.currentTarget.className += " active";
                             }
-
+                        
                             document.getElementById("defaultOpen").click();
-
+                        
                             // JavaScript untuk menangani modal detail barang
                             $(document).ready(function() {
                                 console.log('Document is ready.');
-
+                        
                                 var allPeminjamanData = @json(array_merge($allPeminjaman, $ongoingData, $completedData));
                                 console.log('All Peminjaman Data:', allPeminjamanData);
-
+                        
                                 $('#info-detail').on('show.bs.modal', function(event) {
                                     console.log('Modal is being shown.');
                                     var button = $(event.relatedTarget);
                                     var loanId = button.data('id');
                                     console.log('Loan ID:', loanId);
-
+                        
                                     var selectedDetailPeminjaman = allPeminjamanData.find(detail => detail.siswa.id === loanId);
                                     console.log('Selected Detail Peminjaman:', selectedDetailPeminjaman);
-
+                        
                                     if (!selectedDetailPeminjaman) {
                                         console.error('Detail Peminjaman tidak ditemukan!');
                                         return;
                                     }
-
+                        
                                     var itemsTable = $('#detail-items-table');
                                     var detailsTable = $('#detail-seri-table');
                                     itemsTable.empty();
                                     detailsTable.empty();
-
+                        
                                     var groupedItems = groupItems(selectedDetailPeminjaman.detail_peminjaman);
                                     console.log('Grouped Items:', groupedItems);
-
+                        
                                     for (const [key, value] of Object.entries(groupedItems)) {
-                                        itemsTable.append('<tr><td><img src="' + value.gambar + '" width="56" alt=""></td><td>' + value.nama_barang + '</td><td>' + value.count + '</td></tr>');
+                                        itemsTable.append('<tr><td><img src="{{ asset('') }}' + value.gambar + '" width="56" alt=""></td><td>' + value.nama_barang + '</td><td>' + value.count + '</td></tr>');
                                     }
-
+                        
                                     selectedDetailPeminjaman.detail_peminjaman.forEach(function(detail) {
                                         detailsTable.append('<tr><td>' + detail.nama_barang + '</td><td>' + detail.seri + '</td><td>' + detail.merk + '</td></tr>');
                                     });
-
+                        
                                     console.log('Items Table HTML:', itemsTable.html());
                                     console.log('Details Table HTML:', detailsTable.html());
                                 });
-
+                        
                                 $('#button-addon2-permission').click(function() {
                                     var searchText = $('#searchInputPermission').val().toLowerCase();
                                     var $tableRows = $('#permission table tbody tr');
@@ -342,7 +341,7 @@
                                         return $(this).text().toLowerCase().indexOf(searchText) > -1;
                                     }).show();
                                 });
-
+                        
                                 $('#button-addon2-ongoing').click(function() {
                                     var searchText = $('#searchInputOngoing').val().toLowerCase();
                                     var $tableRows = $('#ongoing table tbody tr');
@@ -351,7 +350,7 @@
                                         return $(this).text().toLowerCase().indexOf(searchText) > -1;
                                     }).show();
                                 });
-
+                        
                                 $('#button-addon2-done').click(function() {
                                     var searchText = $('#searchInputDone').val().toLowerCase();
                                     var $tableRows = $('#done table tbody tr');
@@ -361,10 +360,10 @@
                                     }).show();
                                 });
                             });
-
+                        
                             function groupItems(details) {
                                 let groupedItems = {};
-
+                        
                                 details.forEach(detail => {
                                     if (groupedItems[detail.nama_barang]) {
                                         groupedItems[detail.nama_barang].count += 1;
@@ -376,8 +375,9 @@
                                         };
                                     }
                                 });
-
+                        
                                 return groupedItems;
                             }
                         </script>
+                        
     @endsection

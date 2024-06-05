@@ -2,7 +2,6 @@
 <title>Data Siswa - Sarpras SMKN 8 Jember</title>
 @section('content')
     <div class="container-fluid p-0">
-        <!-- row -->
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -18,26 +17,29 @@
                                         <th>NISN</th>
                                         <th>Nama</th>
                                         <th>Kelas</th>
-                                        <th>Nomer Telepon</th>
+                                        <th>Nomor Telepon</th>
                                         <th>Jurusan</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($siswas as $index => $siswa)
                                     <tr>
-                                        <td>1</td>
-                                        <td>1111</td>
-                                        <td>Kimi Dandy</td>
-                                        <td>XII TKJ</td>
-                                        <td>08123456789</td>
-                                        <td>Teknik Jaringan Komputer dan Telekomunikasi</td>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $siswa->nisn }}</td>
+                                        <td>{{ $siswa->nama }}</td>
+                                        <td>{{ $siswa->kelas }}</td>
+                                        <td>{{ $siswa->nomor_hp }}</td>
+                                        <td>{{ $siswa->jurusan }}</td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="{{ route('edit-siswa') }}" class="btn btn-primary shadow btn-xs sharp pt-2 ms-1">
+                                                <a href="{{ route('edit-siswa', $siswa->id) }}" class="btn btn-primary shadow btn-xs sharp pt-2 ms-1">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </div>
                                         </td>                                        
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

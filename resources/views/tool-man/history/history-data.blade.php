@@ -308,49 +308,48 @@
                             </div>
                         </div>
                         
-                        
                         <script>
                             $(document).ready(function() {
                                 console.log('Document is ready.');
-
+                        
                                 var allPeminjamanData = @json(array_merge($allPeminjaman, $ongoingData, $completedData));
                                 console.log('All Peminjaman Data:', allPeminjamanData);
-
+                        
                                 $('#info-detail-equip').on('show.bs.modal', function(event) {
                                     console.log('Modal is being shown.');
                                     var button = $(event.relatedTarget);
                                     var loanId = button.data('id');
                                     console.log('Loan ID:', loanId);
-
+                        
                                     var selectedDetailPeminjaman = allPeminjamanData.find(detail => detail.siswa.id === loanId);
                                     console.log('Selected Detail Peminjaman:', selectedDetailPeminjaman);
-
+                        
                                     if (!selectedDetailPeminjaman) {
                                         console.error('Detail Peminjaman tidak ditemukan!');
                                         return;
                                     }
-
+                        
                                     var itemsTable = $('#detail-items-table');
                                     var detailsTable = $('#detail-seri-table');
                                     itemsTable.empty();
                                     detailsTable.empty();
-
+                        
                                     var groupedItems = groupItems(selectedDetailPeminjaman.detail_peminjaman);
                                     console.log('Grouped Items:', groupedItems);
-
+                        
                                     for (const [key, value] of Object.entries(groupedItems)) {
-                                        itemsTable.append('<tr><td><img src="' + value.gambar + '" width="56" alt=""></td><td>' + value.nama_barang + '</td><td>' + value.count + '</td></tr>');
+                                        itemsTable.append('<tr><td><img src="{{ asset('') }}' + value.gambar + '" width="56" alt=""></td><td>' + value.nama_barang + '</td><td>' + value.count + '</td></tr>');
                                     }
-
+                        
                                     detailsTable.append('<tr><th>Jenis</th><th>Seri</th><th>Merk</th></tr>');
                                     selectedDetailPeminjaman.detail_peminjaman.forEach(function(detail) {
                                         detailsTable.append('<tr><td>' + detail.nama_barang + '</td><td>' + detail.seri + '</td><td>' + detail.merk + '</td></tr>');
                                     });
-
+                        
                                     console.log('Items Table HTML:', itemsTable.html());
                                     console.log('Details Table HTML:', detailsTable.html());
                                 });
-
+                        
                                 $('#button-addon2-1').click(function() {
                                     var searchText = $('#searchInput1').val().toLowerCase();
                                     var $tableRows = $('#info-detail-equip table tbody tr');
@@ -359,7 +358,7 @@
                                         return $(this).text().toLowerCase().indexOf(searchText) > -1;
                                     }).show();
                                 });
-
+                        
                                 $('#button-addon2-2').click(function() {
                                     var searchText = $('#searchInput2').val().toLowerCase();
                                     var $tableRows = $('#info-detail-equip table tbody tr');
@@ -369,10 +368,10 @@
                                     }).show();
                                 });
                             });
-
+                        
                             function groupItems(details) {
                                 let groupedItems = {};
-
+                        
                                 details.forEach(detail => {
                                     if (groupedItems[detail.nama_barang]) {
                                         groupedItems[detail.nama_barang].count += 1;
@@ -384,10 +383,9 @@
                                         };
                                     }
                                 });
-
+                        
                                 return groupedItems;
                             }
-
                         </script>                        
 
                     </div>

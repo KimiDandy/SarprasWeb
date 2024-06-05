@@ -57,7 +57,7 @@
                                             <select class="js-major custom-border" name="jurusan">
 
                                                 <option value="Otomotif">Otomotif</option>
-                                                <option value="Perikanan">TKJ</option>
+                                                <option value="TKJ">TKJ</option>
                                             </select>
                                         </div>
 
@@ -126,7 +126,7 @@
                                         </div>
 
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+                                            <button type="submit" class="btn btn-primary btn-block">Daftar</button>
                                         </div>
                                     </form>
                                     <div class="text-center mt-5 mb-2">Sudah punya Akun ? <a
