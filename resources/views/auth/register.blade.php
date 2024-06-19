@@ -41,13 +41,13 @@
                                     <div class="text-center mb-3">
                                         <h4 style="font-weight: bold ">SMKN 8 Jember</h4>
                                     </div>
-                                    <form action="{{ route('register') }}" method="post">
+                                    <form action="{{ route('register') }}" method="post" id="registrationForm">
                                         @csrf
                                         <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
                                             <label for="role" class="form-label">Daftar Sebagai</label>
                                             <select class="js-regist-as custom-border" name="role">
                                                 <option value="Pilih">Pilih Role</option>
-                                                <option value="Toolman">ToolMan</option>
+                                                {{-- <option value="Toolman">ToolMan</option> --}}
                                                 <option value="Siswa">Siswa</option>
                                             </select>
                                         </div>
@@ -87,8 +87,9 @@
                                             </div>
                                             <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
                                                 <label for="nomor_handphone_siswa" class="form-label">Nomor Handphone</label>
-                                                <input type="text" class="form-control" id="nomor_handphone_siswa"
+                                                <input type="text" class="form-control nomor-handphone" id="nomor_handphone_siswa"
                                                     name="nomor_handphone_siswa" placeholder="Masukkan Nomor Handphone">
+                                                <small class="text-danger" id="nomor_handphone_siswa_error"></small>
                                             </div>
                                         </div>
 
@@ -102,9 +103,10 @@
                                             <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
                                                 <label for="nomor_handphone_toolman" class="form-label">Nomor
                                                     Handphone</label>
-                                                <input type="text" class="form-control" id="nomor_handphone_toolman"
+                                                <input type="text" class="form-control nomor-handphone" id="nomor_handphone_toolman"
                                                     name="nomor_handphone_toolman"
                                                     placeholder="Masukkan Nomor Handphone">
+                                                <small class="text-danger" id="nomor_handphone_toolman_error"></small>
                                             </div>
                                         </div>
 
@@ -127,10 +129,11 @@
                                                     <i class="fa fa-eye" style="color: white"></i>
                                                 </a>
                                             </div>
+                                            <small class="text-danger" id="password_error"></small>
                                         </div>
 
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Daftar</button>
+                                            <button type="submit" class="btn btn-primary btn-block" id="submitButton">Daftar</button>
                                         </div>
                                     </form>
                                     <div class="text-center mt-5 mb-2">Sudah punya Akun ? <a
@@ -227,6 +230,65 @@
                             'Jurusan');
                 }
             });
+        });
+
+        function validatePhoneNumber(inputId, errorId) {
+    const input = document.getElementById(inputId);
+    const error = document.getElementById(errorId);
+    const submitButton = document.getElementById('submitButton');
+
+    input.addEventListener('input', () => {
+        const value = input.value;
+        if (/^\d{12,13}$/.test(value)) {
+            error.textContent = '';
+            submitButton.disabled = false;
+        } else if (/^\d*$/.test(value)) {
+            error.textContent = 'Nomor handphone harus berisi 12 sampai 13 angka.';
+            submitButton.disabled = true;
+        } else {
+            error.textContent = 'Nomor handphone hanya boleh berisi angka.';
+            submitButton.disabled = true;
+        }
+    });
+}
+
+// Pemanggilan fungsi untuk validasi
+validatePhoneNumber('nomor_handphone_siswa', 'nomor_handphone_siswa_error');
+validatePhoneNumber('nomor_handphone_toolman', 'nomor_handphone_toolman_error');
+
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    if (document.getElementById('submitButton').disabled) {
+        e.preventDefault();
+        alert('Periksa kembali inputan Anda.');
+    }
+});
+
+        function validatePassword(inputId, errorId) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(errorId);
+            const submitButton = document.getElementById('submitButton');
+
+            input.addEventListener('input', () => {
+                const value = input.value;
+                if (value.length >= 8) {
+                    error.textContent = '';
+                    submitButton.disabled = false;
+                } else {
+                    error.textContent = 'Password harus berisi minimal 8 karakter.';
+                    submitButton.disabled = true;
+                }
+            });
+        }
+
+        validatePhoneNumber('nomor_handphone_siswa', 'nomor_handphone_siswa_error');
+        validatePhoneNumber('nomor_handphone_toolman', 'nomor_handphone_toolman_error');
+        validatePassword('inputChoosePassword', 'password_error');
+
+        $('#registrationForm').on('submit', function(e) {
+            if ($('#submitButton').is(':disabled')) {
+                e.preventDefault();
+                alert('Periksa kembali inputan Anda.');
+            }
         });
     </script>
     @if ($errors->any())
