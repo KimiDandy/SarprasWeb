@@ -55,9 +55,13 @@
                                         <div class="form-unit form-divided mb-3 " style="border-radius: 1px">
                                             <label for="jurusan" class="form-label">Jurusan</label>
                                             <select class="js-major custom-border" name="jurusan">
-
-                                                <option value="Otomotif">Otomotif</option>
-                                                <option value="TKJ">TKJ</option>
+                                                <option value="Teknik dan Bisnis Sepeda Motor">Teknik dan Bisnis Sepeda Motor</option>
+                                                <option value="Teknik Kendaraan Ringan">Teknik Kendaraan Ringan</option>
+                                                <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
+                                                <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
+                                                <option value="Multimedia">Multimedia</option>
+                                                <option value="Agribisnis Tanaman Pangan Holtikultura">Agribisnis Tanaman Pangan Holtikultura</option>
+                                                <option value="Pemuliaan dan Pembenihan Tanaman">Pemuliaan dan Pembenihan Tanaman</option>                                                
                                             </select>
                                         </div>
 

@@ -75,7 +75,7 @@ class PengajuanController extends Controller
         ->get();
 
     // Append base URL to gambar_barang
-    $baseUrl = 'http://192.168.1.124:8000/';
+    
     foreach ($details as $detail) {
         $detail->gambar_barang;
     }
